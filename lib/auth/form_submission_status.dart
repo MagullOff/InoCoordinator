@@ -1,7 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
-abstract class FormSubmissionStatus {
+abstract class FormSubmissionStatus extends Equatable {
   const FormSubmissionStatus();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class InitialFormStatus extends FormSubmissionStatus {
