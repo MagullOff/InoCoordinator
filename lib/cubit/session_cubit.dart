@@ -11,26 +11,34 @@ class SessionCubit extends Cubit<SessionState> {
   }
   final AuthRepository authRepo;
 
+  Credentials get organizerCredentials =>
+      (state as AuthenticatedOrganizer).credentials;
+
+  Credentials get playerCredentials =>
+      (state as AuthenticatedPlayer).credentials;
+
   void showAuth() => emit(Unauthenticated());
 
   void attemptAutoLogin() async {
     try {
       final userId = await authRepo.attemptAutoLogin();
-      final organizer = userId;
-      emit(AuthenticatedOrganizer(organizer: organizer));
+      emit(AuthenticatedOrganizer(
+          credentials: Credentials(passcode: '', id: userId)));
     } on Exception {
       emit(Unauthenticated());
     }
   }
 
   void showPlayerSession(AuthCredentials credentials) {
-    final user = credentials.username;
-    emit(AuthenticatedPlayer(player: user));
+    emit(AuthenticatedPlayer(
+        credentials: Credentials(
+            passcode: credentials.passcode, id: credentials.userId)));
   }
 
   void showOrganizerSession(AuthCredentials credentials) {
-    final user = credentials.username;
-    emit(AuthenticatedOrganizer(organizer: user));
+    emit(AuthenticatedOrganizer(
+        credentials: Credentials(
+            passcode: credentials.passcode, id: credentials.userId)));
   }
 
   void signOut() {

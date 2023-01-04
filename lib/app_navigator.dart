@@ -7,6 +7,8 @@ import 'package:ino_coordinator/auth/auth_cubit.dart';
 import 'package:ino_coordinator/auth/auth_navigator.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/loading_view.dart';
+import 'package:ino_coordinator/player/player_repository.dart';
+import 'package:ino_coordinator/player/player_view.dart';
 import 'package:ino_coordinator/session_view.dart';
 
 class AppNavigator extends StatelessWidget {
@@ -30,7 +32,11 @@ class AppNavigator extends StatelessWidget {
             if (state is AuthenticatedOrganizer)
               MaterialPage(child: SessionView()),
             if (state is AuthenticatedPlayer)
-              MaterialPage(child: SessionView()),
+              MaterialPage(
+                  child: RepositoryProvider(
+                create: (context) => PlayerRepository(),
+                child: PlayerView(),
+              )),
           ],
           onPopPage: (route, result) => route.didPop(result),
         );

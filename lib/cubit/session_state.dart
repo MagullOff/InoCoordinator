@@ -1,5 +1,12 @@
 part of 'session_cubit.dart';
 
+class Credentials {
+  String passcode;
+  String id;
+
+  Credentials({required this.id, required this.passcode});
+}
+
 abstract class SessionState extends Equatable {
   const SessionState();
 
@@ -12,13 +19,13 @@ class UnknownSessionState extends SessionState {}
 class Unauthenticated extends SessionState {}
 
 class AuthenticatedOrganizer extends SessionState {
-  final dynamic organizer;
+  final Credentials credentials;
 
-  AuthenticatedOrganizer({this.organizer});
+  AuthenticatedOrganizer({required this.credentials});
 }
 
 class AuthenticatedPlayer extends SessionState {
-  final dynamic player;
+  final Credentials credentials;
 
-  AuthenticatedPlayer({this.player});
+  AuthenticatedPlayer({required this.credentials});
 }

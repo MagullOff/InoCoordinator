@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   ThemeData _appTheme() {
     return ThemeData(
         primaryColor: Colors.lightGreen[700],
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.white,
         textTheme: TextTheme(
           headline1: TextStyle(
               fontSize: 32.0, fontWeight: FontWeight.bold, color: Colors.white),
