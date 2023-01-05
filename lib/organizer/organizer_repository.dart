@@ -26,4 +26,21 @@ class OrganizerRepository {
         .forEach((jsonEvent) => result.add(Event.fromJson(jsonEvent)));
     return result;
   }
+
+  Future<Event> getEvent(Credentials credentials, String eventId) async {
+    var url = Uri.http(urlBase, 'events/$eventId');
+
+    var response = await http.get(
+      url,
+      headers: <String, String>{
+        //TODO: change endpoint
+        //'Authorization': '${credentials.id}@${credentials.passcode}',
+      },
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception("Error fetching the data!");
+    }
+    return Event.fromJson(jsonDecode(utf8.decode(response.bodyBytes)));
+  }
 }
