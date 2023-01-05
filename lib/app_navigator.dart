@@ -13,7 +13,6 @@ import 'package:ino_coordinator/organizer/organizer_repository.dart';
 import 'package:ino_coordinator/player/player_navigatior.dart';
 import 'package:ino_coordinator/player/player_repository.dart';
 import 'package:ino_coordinator/player/player_view.dart';
-import 'package:ino_coordinator/session_view.dart';
 
 class AppNavigator extends StatelessWidget {
   const AppNavigator({super.key});

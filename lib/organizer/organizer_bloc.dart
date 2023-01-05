@@ -47,7 +47,6 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
     });
     on<GetEventPlayers>((event, emit) async {
       var oldState = state;
-      emit(OrganizerLoading());
       try {
         final eventPlayers = await organizerRepository.getPlayers(
             organizerCredentials, event.eventId);
@@ -59,7 +58,6 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
     });
     on<GetEventPoints>((event, emit) async {
       var oldState = state;
-      emit(OrganizerLoading());
       try {
         final eventPoints = await organizerRepository.getPoints(
             organizerCredentials, event.eventId);

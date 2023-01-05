@@ -68,7 +68,7 @@ class OrganizerRepository {
 
   Future<List<Player>> getPlayers(
       Credentials credentials, String eventId) async {
-    var url = Uri.http(urlBase, 'point/event/$eventId');
+    var url = Uri.http(urlBase, 'player/event/$eventId');
 
     var response = await http.get(
       url,

@@ -7,7 +7,7 @@ class Player {
 
   Player.fromJson(Map<String, dynamic> body) {
     name = body['name'];
-    code = body['code'];
+    code = body['access_code'].toString();
     id = body['id'];
   }
 }
