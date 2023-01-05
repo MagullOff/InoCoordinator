@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/auth/components.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
-import 'package:ino_coordinator/player/player_bloc.dart';
+import 'package:ino_coordinator/player/bloc/player_bloc.dart';
 import 'package:ino_coordinator/data/player_repository.dart';
 import 'package:ino_coordinator/data/model/player_stats.dart';
 

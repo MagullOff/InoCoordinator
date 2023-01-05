@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/loading_view.dart';
-import 'package:ino_coordinator/player/player_bloc.dart';
+import 'package:ino_coordinator/player/bloc/player_bloc.dart';
 import 'package:ino_coordinator/player/player_view.dart';
 
 class PlayerNavigator extends StatelessWidget {

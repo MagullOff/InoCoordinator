@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:ino_coordinator/auth/auth_credentials.dart';
 import 'package:meta/meta.dart';
 
-import '../cubit/session_cubit.dart';
+import '../../cubit/session_cubit.dart';
 
 @immutable
 abstract class AuthState extends Equatable {

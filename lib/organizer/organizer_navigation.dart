@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/loading_view.dart';
-import 'package:ino_coordinator/organizer/organizer_bloc.dart';
+import 'package:ino_coordinator/organizer/bloc/organizer_bloc.dart';
 import 'package:ino_coordinator/organizer/views/organizer_event_players_view.dart';
 import 'package:ino_coordinator/organizer/views/organizer_event_points_view.dart';
 import 'package:ino_coordinator/organizer/views/organizer_events_view.dart';

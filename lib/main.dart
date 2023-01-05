@@ -4,9 +4,9 @@ import 'package:ino_coordinator/app_navigator.dart';
 import 'package:ino_coordinator/auth/auth_navigator.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 
-import 'auth/auth_cubit.dart';
+import 'auth/cubit/auth_cubit.dart';
 import 'data/auth_repository.dart';
-import 'auth/login/login.dart';
+import 'auth/login/login_view.dart';
 
 void main() {
   runApp(MyApp());

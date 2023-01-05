@@ -6,9 +6,9 @@ import 'package:ino_coordinator/data/model/event_stats.dart';
 import 'package:ino_coordinator/data/model/player_stats.dart';
 import 'package:ino_coordinator/data/organizer_repository.dart';
 
-import '../data/model/event.dart';
-import '../data/model/player.dart';
-import '../data/model/point.dart';
+import '../../data/model/event.dart';
+import '../../data/model/player.dart';
+import '../../data/model/point.dart';
 
 part 'organizer_event.dart';
 part 'organizer_state.dart';

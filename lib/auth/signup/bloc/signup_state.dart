@@ -1,11 +1,11 @@
-part of 'register_bloc.dart';
+part of 'signup_bloc.dart';
 
-class RegisterState extends Equatable {
+class SignUpState extends Equatable {
   final String username;
   bool get isValidUsername => username.length < 5 || !username.contains(' ');
   final FormSubmissionStatus formStatus;
 
-  RegisterState(
+  SignUpState(
       {this.username = '', this.formStatus = const InitialFormStatus()});
 
   @override

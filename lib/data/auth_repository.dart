@@ -38,7 +38,7 @@ class AuthRepository {
     return jsonDecode(response.body)['id'];
   }
 
-  Future<String> register(String username) async {
+  Future<String> signUp(String username) async {
     var url = Uri.http(urlBase, 'organizer/add');
     var response = await http.post(url,
         headers: <String, String>{

@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/data/model/point.dart';
 
-import '../organizer_bloc.dart';
+import '../bloc/organizer_bloc.dart';
 
 class OrganizerEventPointsView extends StatelessWidget {
   const OrganizerEventPointsView({super.key});

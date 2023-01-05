@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'form_submission_status.dart';
-import 'login/login_bloc.dart';
+import 'login/bloc/login_bloc.dart';
 
 Widget redirectHyperlink(BuildContext context, String text, String route) {
   return GestureDetector(
