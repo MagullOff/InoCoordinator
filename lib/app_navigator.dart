@@ -7,6 +7,10 @@ import 'package:ino_coordinator/auth/auth_cubit.dart';
 import 'package:ino_coordinator/auth/auth_navigator.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/loading_view.dart';
+import 'package:ino_coordinator/organizer/organizer_bloc.dart';
+import 'package:ino_coordinator/organizer/organizer_navigation.dart';
+import 'package:ino_coordinator/organizer/organizer_repository.dart';
+import 'package:ino_coordinator/player/player_navigatior.dart';
 import 'package:ino_coordinator/player/player_repository.dart';
 import 'package:ino_coordinator/player/player_view.dart';
 import 'package:ino_coordinator/session_view.dart';
@@ -30,7 +34,22 @@ class AppNavigator extends StatelessWidget {
                 child: AuthNavigator(),
               )),
             if (state is AuthenticatedOrganizer)
-              MaterialPage(child: SessionView()),
+              MaterialPage(
+                  child: RepositoryProvider(
+                create: (context) => OrganizerRepository(),
+                child: BlocProvider(
+                  create: (context) {
+                    var sessionCubit = context.read<SessionCubit>();
+                    return OrganizerBloc(
+                        organizerCredentials: sessionCubit.organizerCredentials,
+                        organizerRepository:
+                            context.read<OrganizerRepository>(),
+                        sessionCubit: sessionCubit)
+                      ..add(GetOrganizerEvents());
+                  },
+                  child: OrganizerNavigator(),
+                ),
+              )),
             if (state is AuthenticatedPlayer)
               MaterialPage(
                   child: RepositoryProvider(

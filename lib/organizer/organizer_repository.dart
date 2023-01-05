@@ -1,14 +1,15 @@
 import 'dart:convert';
 
 import 'package:ino_coordinator/cubit/session_cubit.dart';
-import 'package:ino_coordinator/model/player_stats.dart';
+
+import '../model/event.dart';
 import 'package:http/http.dart' as http;
 
-class PlayerRepository {
+class OrganizerRepository {
   final String urlBase = '10.0.2.2:6000';
 
-  Future<PlayerStats> getPlayerStats(Credentials credentials) async {
-    var url = Uri.http(urlBase, 'stats/player/me');
+  Future<List<Event>> getOrganizerEvents(Credentials credentials) async {
+    var url = Uri.http(urlBase, 'events/me');
 
     var response = await http.get(
       url,
@@ -20,7 +21,9 @@ class PlayerRepository {
     if (response.statusCode != 200) {
       throw Exception("Error fetching the data!");
     }
-
-    return PlayerStats.fromJson(jsonDecode(response.body));
+    List<Event> result = [];
+    jsonDecode(response.body)
+        .forEach((jsonEvent) => result.add(Event.fromJson(jsonEvent)));
+    return result;
   }
 }

@@ -28,7 +28,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         authCubit.launchPlayerSession(
             AuthCredentials(userId: userId, passcode: state.passCode));
       } on Exception catch (e, _) {
-        emit(LoginState(formStatus: SubmissionFailed(e)));
+        try {
+          final userId = await authRepo.loginOrganizer(state.passCode);
+          emit(LoginState(
+              formStatus: SubmissionSuccess(), passCode: state.passCode));
+          authCubit.launchOrganizerSession(
+              AuthCredentials(userId: userId, passcode: state.passCode));
+        } on Exception catch (f, _) {
+          emit(LoginState(formStatus: SubmissionFailed(e)));
+        }
       }
     });
   }

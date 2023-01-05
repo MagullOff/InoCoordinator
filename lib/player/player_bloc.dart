@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/player/player_repository.dart';
-import 'package:ino_coordinator/player/player_stats.dart';
+import 'package:ino_coordinator/model/player_stats.dart';
 import 'package:intl/intl.dart';
 
 part 'player_event.dart';

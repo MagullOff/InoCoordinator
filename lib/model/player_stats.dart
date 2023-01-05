@@ -28,6 +28,8 @@ class PointStats {
   PointStats.fromJson(Map<String, dynamic> body) {
     capturePercentage = body['capture_percentage']!;
     name = body['name']!;
-    date = body['date'];
+    date = body['date'] == null
+        ? null
+        : DateFormat.Hm().format(DateTime.parse(body['date']));
   }
 }

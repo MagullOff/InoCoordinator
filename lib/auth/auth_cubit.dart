@@ -30,4 +30,8 @@ class AuthCubit extends Cubit<AuthState> {
   void launchPlayerSession(AuthCredentials credentials) {
     sessionCubit.showPlayerSession(credentials);
   }
+
+  void launchOrganizerSession(AuthCredentials credentials) {
+    sessionCubit.showOrganizerSession(credentials);
+  }
 }
