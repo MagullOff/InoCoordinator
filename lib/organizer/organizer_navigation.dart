@@ -3,6 +3,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/loading_view.dart';
+import 'package:ino_coordinator/organizer/views/organizer_event_players_view.dart';
+import 'package:ino_coordinator/organizer/views/organizer_event_points_view.dart';
 import 'package:ino_coordinator/organizer/views/organizer_events_view.dart';
 import 'package:ino_coordinator/organizer/views/organizer_player_stats_view.dart';
 
@@ -27,8 +29,14 @@ class OrganizerNavigator extends StatelessWidget {
               if (state is OrganizerLoadedEventStats ||
                   state is OrganizerLoadedPlayerStats) ...[
                 MaterialPage(child: OrganizerEventStatsView()),
-                if (state is OrganizerLoadedPlayerStats)
-                  MaterialPage(child: OrganizerPlayerStatsView())
+                if (state is OrganizerLoadedEventPlayers)
+                  MaterialPage(child: OrganizerEventPlayersView()),
+                if (state is OrganizerLoadedEventPoints ||
+                    state is OrganizerLoadedPlayerStats) ...[
+                  MaterialPage(child: OrganizerEventPointsView()),
+                  if (state is OrganizerLoadedPlayerStats)
+                    MaterialPage(child: OrganizerPlayerStatsView())
+                ]
               ]
             ]
           ],

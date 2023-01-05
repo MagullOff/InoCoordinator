@@ -1,9 +1,9 @@
 import 'package:intl/intl.dart';
 
 class PlayerStats {
-  late String name;
-  late int capturePercentage;
-  late List<PointStats> pointList;
+  late final String name;
+  late final int capturePercentage;
+  late final List<PointStats> pointList;
   PlayerStats(
       {required this.capturePercentage,
       required this.name,

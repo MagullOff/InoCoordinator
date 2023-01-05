@@ -23,6 +23,7 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
       required this.sessionCubit})
       : super(OrganizerLoading()) {
     on<GetOrganizerEvents>((event, emit) async {
+      emit(OrganizerLoading());
       try {
         final events =
             await organizerRepository.getOrganizerEvents(organizerCredentials);
@@ -33,6 +34,7 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
     });
     on<GetEventStats>((event, emit) async {
       var oldState = state;
+      emit(OrganizerLoading());
       try {
         final eventStats = await organizerRepository.getEvent(
             organizerCredentials, event.eventId);
@@ -43,7 +45,29 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
         emit(OrganizerError(e.toString()));
       }
     });
-    on<GetEventUsers>((event, emit) {});
-    on<GetUserStats>((event, emit) {});
+    on<GetEventPlayers>((event, emit) async {
+      var oldState = state;
+      emit(OrganizerLoading());
+      try {
+        final eventPlayers = await organizerRepository.getPlayers(
+            organizerCredentials, event.eventId);
+        emit(OrganizerLoadedEventPlayers(
+            eventPlayers, oldState as OrganizerLoadedEventStats));
+      } on Exception catch (e, _) {
+        emit(OrganizerError(e.toString()));
+      }
+    });
+    on<GetEventPoints>((event, emit) async {
+      var oldState = state;
+      emit(OrganizerLoading());
+      try {
+        final eventPoints = await organizerRepository.getPoints(
+            organizerCredentials, event.eventId);
+        emit(OrganizerLoadedEventPoints(
+            eventPoints, oldState as OrganizerLoadedEventStats));
+      } on Exception catch (e, _) {
+        emit(OrganizerError(e.toString()));
+      }
+    });
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/model/event.dart';
+import 'package:ino_coordinator/organizer/views/organizer_event_points_view.dart';
 
 import '../organizer_bloc.dart';
 
@@ -37,52 +38,71 @@ class OrganizerEventStatsView extends StatelessWidget {
         body: Column(
           children: [
             _buildTitle(context, eventStats.name),
-            _buildButtons(context)
+            _buildButtons(context, eventStats.id)
           ],
         ));
   }
 
-  Widget _buildButtons(BuildContext context) {
+  Widget _buildButtons(BuildContext context, String eventId) {
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 200, 0, 0),
       child: Center(
           child: Row(
-        children: [_buildPlayersButton(context), _buildPointsButton(context)],
+        children: [
+          _buildPlayersButton(context, eventId),
+          _buildPointsButton(context, eventId)
+        ],
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
       )),
     );
   }
 
-  Widget _buildPlayersButton(BuildContext context) {
-    return InkWell(
-      onTap: () => {},
-      child: Card(
-        child: SizedBox(
-          width: 150,
-          height: 100,
-          child: Center(
-            child: Text('Show Players',
-                style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15)),
+  Widget _buildPlayersButton(BuildContext context, String eventId) {
+    return BlocBuilder<OrganizerBloc, OrganizerState>(
+      builder: (context, state) {
+        return InkWell(
+          onTap: () {
+            context
+                .read<OrganizerBloc>()
+                .add(GetEventPlayers(eventId: eventId));
+          },
+          child: Card(
+            child: SizedBox(
+              width: 150,
+              height: 100,
+              child: Center(
+                child: Text('Show Players',
+                    style:
+                        TextStyle(fontWeight: FontWeight.w300, fontSize: 15)),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
-  Widget _buildPointsButton(BuildContext context) {
-    return InkWell(
-      onTap: () => {},
-      child: Card(
-        child: SizedBox(
-          width: 150,
-          height: 100,
-          child: Center(
-            child: Text('Show Points',
-                style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15)),
+  Widget _buildPointsButton(BuildContext context, String eventId) {
+    return BlocBuilder<OrganizerBloc, OrganizerState>(
+      builder: (context, state) {
+        return InkWell(
+          onTap: () {
+            context.read<OrganizerBloc>().add(GetEventPoints(eventId: eventId));
+          },
+          child: Card(
+            child: SizedBox(
+              width: 150,
+              height: 100,
+              child: Center(
+                child: Text('Show Points',
+                    style:
+                        TextStyle(fontWeight: FontWeight.w300, fontSize: 15)),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
