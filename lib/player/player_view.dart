@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/auth/components.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/player/player_bloc.dart';
-import 'package:ino_coordinator/player/player_repository.dart';
-import 'package:ino_coordinator/model/player_stats.dart';
+import 'package:ino_coordinator/data/player_repository.dart';
+import 'package:ino_coordinator/data/model/player_stats.dart';
 
 class PlayerView extends StatelessWidget {
   const PlayerView({super.key});

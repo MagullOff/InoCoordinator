@@ -9,9 +9,9 @@ import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/loading_view.dart';
 import 'package:ino_coordinator/organizer/organizer_bloc.dart';
 import 'package:ino_coordinator/organizer/organizer_navigation.dart';
-import 'package:ino_coordinator/organizer/organizer_repository.dart';
+import 'package:ino_coordinator/data/organizer_repository.dart';
 import 'package:ino_coordinator/player/player_navigatior.dart';
-import 'package:ino_coordinator/player/player_repository.dart';
+import 'package:ino_coordinator/data/player_repository.dart';
 import 'package:ino_coordinator/player/player_view.dart';
 
 class AppNavigator extends StatelessWidget {

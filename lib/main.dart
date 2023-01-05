@@ -5,7 +5,7 @@ import 'package:ino_coordinator/auth/auth_navigator.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 
 import 'auth/auth_cubit.dart';
-import 'auth/auth_repository.dart';
+import 'data/auth_repository.dart';
 import 'auth/login/login.dart';
 
 void main() {

@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:ino_coordinator/cubit/session_cubit.dart';
-import 'package:ino_coordinator/model/player.dart';
+import 'package:ino_coordinator/data/model/player.dart';
 
-import '../model/event.dart';
+import 'model/event.dart';
 import 'package:http/http.dart' as http;
 
-import '../model/point.dart';
+import 'model/point.dart';
 
 class OrganizerRepository {
   final String urlBase = '10.0.2.2:6000';

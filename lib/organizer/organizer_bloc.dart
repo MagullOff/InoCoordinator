@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:ino_coordinator/auth/auth_repository.dart';
+import 'package:ino_coordinator/data/auth_repository.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
-import 'package:ino_coordinator/model/event_stats.dart';
-import 'package:ino_coordinator/model/player_stats.dart';
-import 'package:ino_coordinator/organizer/organizer_repository.dart';
+import 'package:ino_coordinator/data/model/event_stats.dart';
+import 'package:ino_coordinator/data/model/player_stats.dart';
+import 'package:ino_coordinator/data/organizer_repository.dart';
 
-import '../model/event.dart';
-import '../model/player.dart';
-import '../model/point.dart';
+import '../data/model/event.dart';
+import '../data/model/player.dart';
+import '../data/model/point.dart';
 
 part 'organizer_event.dart';
 part 'organizer_state.dart';

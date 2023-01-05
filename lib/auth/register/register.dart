@@ -6,7 +6,7 @@ import 'package:ino_coordinator/auth/register/register_bloc.dart';
 import 'package:ino_coordinator/auth/components.dart';
 
 import '../auth_cubit.dart';
-import '../auth_repository.dart';
+import '../../data/auth_repository.dart';
 import '../login/login_bloc.dart';
 
 class Register extends StatefulWidget {

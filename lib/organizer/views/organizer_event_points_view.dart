@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ino_coordinator/model/point.dart';
+import 'package:ino_coordinator/data/model/point.dart';
 
 import '../organizer_bloc.dart';
 

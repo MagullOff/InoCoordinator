@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/organizer/organizer_bloc.dart';
 
-import '../../model/player.dart';
+import '../../data/model/player.dart';
 
 class OrganizerEventPlayersView extends StatelessWidget {
   const OrganizerEventPlayersView({super.key});
