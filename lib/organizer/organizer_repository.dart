@@ -22,7 +22,7 @@ class OrganizerRepository {
       throw Exception("Error fetching the data!");
     }
     List<Event> result = [];
-    jsonDecode(response.body)
+    jsonDecode(utf8.decode(response.bodyBytes))
         .forEach((jsonEvent) => result.add(Event.fromJson(jsonEvent)));
     return result;
   }

@@ -21,6 +21,6 @@ class PlayerRepository {
       throw Exception("Error fetching the data!");
     }
 
-    return PlayerStats.fromJson(jsonDecode(response.body));
+    return PlayerStats.fromJson(jsonDecode(utf8.decode(response.bodyBytes)));
   }
 }
