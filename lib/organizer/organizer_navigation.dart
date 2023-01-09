@@ -26,10 +26,10 @@ class OrganizerNavigator extends StatelessWidget {
               MaterialPage(child: OrganizerEventsView()),
               if (state is OrganizerLoadedEventStats) ...[
                 MaterialPage(child: OrganizerEventStatsView()),
-                if (state is OrganizerLoadedEventPlayers)
-                  MaterialPage(child: OrganizerEventPlayersView()),
-                if (state is OrganizerLoadedEventPoints) ...[
+                if (state is OrganizerLoadedEventPoints)
                   MaterialPage(child: OrganizerEventPointsView()),
+                if (state is OrganizerLoadedEventPlayers) ...[
+                  MaterialPage(child: OrganizerEventPlayersView()),
                   if (state is OrganizerLoadedPlayerStats)
                     MaterialPage(child: OrganizerPlayerStatsView())
                 ]

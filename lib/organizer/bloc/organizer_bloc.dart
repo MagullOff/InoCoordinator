@@ -5,6 +5,7 @@ import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/data/model/event_stats.dart';
 import 'package:ino_coordinator/data/model/player_stats.dart';
 import 'package:ino_coordinator/data/organizer_repository.dart';
+import 'package:ino_coordinator/loading_view.dart';
 
 import '../../data/model/event.dart';
 import '../../data/model/player.dart';
@@ -63,6 +64,17 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
             organizerCredentials, event.eventId);
         emit(OrganizerLoadedEventPoints(
             eventPoints, oldState as OrganizerLoadedEventStats));
+      } on Exception catch (e, _) {
+        emit(OrganizerError(e.toString()));
+      }
+    });
+    on<GetPlayerStats>((event, emit) async {
+      var oldState = state;
+      try {
+        final playerStats = await organizerRepository.getPlayerStats(
+            organizerCredentials, event.playerId);
+        emit(OrganizerLoadedPlayerStats(
+            playerStats, oldState as OrganizerLoadedEventPlayers));
       } on Exception catch (e, _) {
         emit(OrganizerError(e.toString()));
       }

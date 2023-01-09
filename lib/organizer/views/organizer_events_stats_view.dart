@@ -63,7 +63,6 @@ class OrganizerEventStatsView extends StatelessWidget {
       builder: (context, state) {
         return InkWell(
           onTap: () {
-            print('ogóras');
             context
                 .read<OrganizerBloc>()
                 .add(GetEventPlayers(eventId: eventId));

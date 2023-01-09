@@ -22,11 +22,6 @@ class OrganizerLoadedEventStats extends OrganizerLoadedEvents {
       : super(organizerLoadedEvents.events);
 }
 
-class OrganizerLoadedPlayerStats extends OrganizerState {
-  final PlayerStats playerStats;
-  OrganizerLoadedPlayerStats(this.playerStats);
-}
-
 class OrganizerLoadedEventPlayers extends OrganizerLoadedEventStats {
   final List<Player> players;
   OrganizerLoadedEventPlayers(
@@ -45,6 +40,13 @@ class OrganizerLoadedEventPoints extends OrganizerLoadedEventStats {
             eventStats: organizerLoadedEventStats.eventStats,
             organizerLoadedEvents:
                 OrganizerLoadedEvents(organizerLoadedEventStats.events));
+}
+
+class OrganizerLoadedPlayerStats extends OrganizerLoadedEventPlayers {
+  final PlayerStats playerStats;
+  OrganizerLoadedPlayerStats(
+      this.playerStats, OrganizerLoadedEventPlayers organizerLoadedEventPlayers)
+      : super(organizerLoadedEventPlayers.players, organizerLoadedEventPlayers);
 }
 
 class OrganizerError extends OrganizerState {

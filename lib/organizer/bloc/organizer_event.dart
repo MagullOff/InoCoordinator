@@ -25,6 +25,6 @@ class GetEventPoints extends OrganizerEvent {
 }
 
 class GetPlayerStats extends OrganizerEvent {
-  final String userId;
-  GetPlayerStats({required this.userId});
+  final String playerId;
+  GetPlayerStats({required this.playerId});
 }

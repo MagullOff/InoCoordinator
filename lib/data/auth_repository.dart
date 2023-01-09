@@ -2,16 +2,16 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-class AuthRepository {
-  final String urlBase = '10.0.2.2:6000';
+import '../config.dart';
 
+class AuthRepository {
   Future<String> attemptAutoLogin() async {
     await Future.delayed(Duration(seconds: 1));
     throw Exception("not signed in");
   }
 
   Future<String> loginPlayer(String passcode) async {
-    var url = Uri.http(urlBase, 'player/login');
+    var url = Uri.http(Config.BaseUrl, 'player/login');
 
     var response = await http.post(url,
         headers: <String, String>{
@@ -25,7 +25,7 @@ class AuthRepository {
   }
 
   Future<String> loginOrganizer(String passcode) async {
-    var url = Uri.http(urlBase, 'organizer/login');
+    var url = Uri.http(Config.BaseUrl, 'organizer/login');
 
     var response = await http.post(url,
         headers: <String, String>{
@@ -39,7 +39,7 @@ class AuthRepository {
   }
 
   Future<String> signUp(String username) async {
-    var url = Uri.http(urlBase, 'organizer/add');
+    var url = Uri.http(Config.BaseUrl, 'organizer/add');
     var response = await http.post(url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',

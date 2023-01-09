@@ -84,7 +84,7 @@ class OrganizerEventPlayersView extends StatelessWidget {
                       onTap: () => {
                         context
                             .read<OrganizerBloc>()
-                            .add(GetPlayerStats(userId: list[index].id))
+                            .add(GetPlayerStats(playerId: list[index].id))
                       },
                       leading: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
