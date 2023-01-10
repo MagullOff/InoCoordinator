@@ -5,6 +5,7 @@ import 'package:ino_coordinator/auth/cubit/auth_cubit.dart';
 import 'package:ino_coordinator/auth/form_submission_status.dart';
 import 'package:ino_coordinator/auth/components.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/text_input_field.dart';
 import 'package:ino_coordinator/shared/wide_button.dart';
 
 import '../../data/auth_repository.dart';
@@ -80,9 +81,8 @@ class LoginView extends StatelessWidget {
   Widget _signUpButton(BuildContext context) {
     return WideButton(
       onClick: () => context.read<AuthCubit>().showSignUp(),
-      background: Themes.backGround,
-      primary: Themes.primary,
       title: "Sign up",
+      buttonType: ButtonType.secondary,
     );
   }
 
@@ -91,17 +91,14 @@ class LoginView extends StatelessWidget {
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
-          child: TextFormField(
-            keyboardType: TextInputType.number,
+          child: TextInputField(
+            inputType: InputType.numeric,
             validator: (value) =>
                 state.isValidPassCode ? null : "Passcode length is not correct",
             onChanged: (value) => context
                 .read<LoginBloc>()
                 .add(LoginPassCodeChanged(passCode: value)),
-            decoration: inputDecoration(context, "Pass code"),
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly
-            ],
+            decorationText: "Pass code",
           ),
         );
       },
@@ -121,9 +118,8 @@ class LoginView extends StatelessWidget {
                     context.read<LoginBloc>().add(LoginSubmitted());
                   }
                 },
-                background: Themes.primary,
                 title: 'Submit',
-                primary: Themes.backGround,
+                buttonType: ButtonType.primary,
               );
       },
     );

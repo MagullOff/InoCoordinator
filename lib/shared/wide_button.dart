@@ -4,17 +4,25 @@ import 'package:flutter/src/widgets/framework.dart';
 
 import '../themes.dart';
 
+enum ButtonType { primary, secondary }
+
 class WideButton extends StatelessWidget {
   final void Function()? onClick;
-  final Color background;
-  final Color primary;
+  late Color background;
+  late Color primary;
   final String title;
-  const WideButton(
+  WideButton(
       {super.key,
       this.onClick,
-      required this.background,
-      required this.primary,
-      required this.title});
+      required this.title,
+      required ButtonType buttonType}) {
+    primary = Themes.backGround;
+    background = Themes.primary;
+    if (buttonType == ButtonType.primary) {
+      primary = Themes.primary;
+      background = Themes.backGround;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

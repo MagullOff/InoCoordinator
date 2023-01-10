@@ -5,6 +5,7 @@ import 'package:ino_coordinator/auth/form_submission_status.dart';
 import 'package:ino_coordinator/auth/components.dart';
 import 'package:ino_coordinator/auth/signup/bloc/signup_bloc.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/text_input_field.dart';
 
 import '../../shared/wide_button.dart';
 import '../../themes.dart';
@@ -78,9 +79,8 @@ class SignUpView extends StatelessWidget {
   Widget _loginButton(BuildContext context) {
     return WideButton(
       onClick: () => context.read<AuthCubit>().showLogin(),
-      background: Themes.backGround,
-      primary: Themes.primary,
       title: "Log in",
+      buttonType: ButtonType.secondary,
     );
   }
 
@@ -89,13 +89,13 @@ class SignUpView extends StatelessWidget {
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
-          child: TextFormField(
+          child: TextInputField(
             validator: (value) =>
                 state.isValidUsername ? null : "Username is not valid",
             onChanged: (value) => context
                 .read<SignUpBloc>()
                 .add(SignUpUsernameChanged(username: value)),
-            decoration: inputDecoration(context, "Username"),
+            decorationText: "Username",
           ),
         );
       },
@@ -115,9 +115,8 @@ class SignUpView extends StatelessWidget {
                     context.read<SignUpBloc>().add(SignUpSubmitted());
                   }
                 },
-                background: Themes.primary,
                 title: 'Submit',
-                primary: Themes.backGround,
+                buttonType: ButtonType.primary,
               );
       },
     );
