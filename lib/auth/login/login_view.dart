@@ -5,6 +5,7 @@ import 'package:ino_coordinator/auth/cubit/auth_cubit.dart';
 import 'package:ino_coordinator/auth/form_submission_status.dart';
 import 'package:ino_coordinator/auth/components.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/submission_form.dart';
 import 'package:ino_coordinator/shared/text_input_field.dart';
 import 'package:ino_coordinator/shared/wide_button.dart';
 
@@ -50,31 +51,10 @@ class LoginView extends StatelessWidget {
   }
 
   Widget _loginForm() {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          Expanded(
-            child: Container(),
-          ),
-          Expanded(
-            flex: 3,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'Enter your player code to log in',
-                  style: Themes.textTheme().headline2,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                _codeField(),
-              ],
-            ),
-          ),
-        ],
-      ),
+    return SubmissionForm(
+      formKey: _formKey,
+      title: 'Enter your player code to log in',
+      input: _codeField(),
     );
   }
 
