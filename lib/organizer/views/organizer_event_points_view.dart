@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/data/model/point.dart';
 
+import '../../themes.dart';
 import '../bloc/organizer_bloc.dart';
 
 class OrganizerEventPointsView extends StatelessWidget {
@@ -47,9 +48,7 @@ class OrganizerEventPointsView extends StatelessWidget {
               size: 30,
               color: Colors.white,
             )),
-        appBar: AppBar(
-          title: Text(eventName),
-        ),
+        appBar: Themes.defaultAppBar(title: eventName),
         body: SingleChildScrollView(
           child: Column(children: [_buildList(context, points)]),
         ));

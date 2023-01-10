@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/model/player_stats.dart';
+import '../../themes.dart';
 import '../bloc/organizer_bloc.dart';
 
 class OrganizerPlayerStatsView extends StatelessWidget {
@@ -21,7 +22,7 @@ class OrganizerPlayerStatsView extends StatelessWidget {
 
   Widget _buildCard(BuildContext context, PlayerStats model) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: Themes.defaultAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [

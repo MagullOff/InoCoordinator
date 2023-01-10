@@ -21,7 +21,6 @@ class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context),
       body: BlocProvider(
           create: (context) => SignUpBloc(
               authRepo: context.read<AuthRepository>(),
@@ -57,8 +56,8 @@ class _SignUpViewState extends State<SignUpView> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    icon(),
                     Text(
                       'Enter your desired username to sign up',
                       textAlign: TextAlign.center,

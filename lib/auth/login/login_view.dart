@@ -20,7 +20,6 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context1) {
     return Scaffold(
-      appBar: appBar(context1),
       body: BlocProvider(
           create: (context) => LoginBloc(
               authRepo: context.read<AuthRepository>(),
@@ -56,17 +55,14 @@ class _LoginViewState extends State<LoginView> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    icon(),
                     Text(
                       'Enter your player code to log in',
                       style: Theme.of(context).textTheme.headline2,
                     ),
                     _codeField(),
                     _submitButton("Continue"),
-                    const SizedBox(
-                      height: 130,
-                    )
                   ],
                 ),
               ),

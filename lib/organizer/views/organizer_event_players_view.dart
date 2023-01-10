@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/organizer/bloc/organizer_bloc.dart';
 
 import '../../data/model/player.dart';
+import '../../themes.dart';
 
 class OrganizerEventPlayersView extends StatelessWidget {
   const OrganizerEventPlayersView({super.key});
@@ -48,8 +49,8 @@ class OrganizerEventPlayersView extends StatelessWidget {
               size: 30,
               color: Colors.white,
             )),
-        appBar: AppBar(
-          title: Text(eventName),
+        appBar: Themes.defaultAppBar(
+          title: eventName,
         ),
         body: SingleChildScrollView(
           child: Column(children: [_buildList(context, players)]),

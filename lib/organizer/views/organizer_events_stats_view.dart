@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/data/model/event.dart';
 import 'package:ino_coordinator/organizer/views/organizer_event_points_view.dart';
 
+import '../../themes.dart';
 import '../bloc/organizer_bloc.dart';
 
 class OrganizerEventStatsView extends StatelessWidget {
@@ -34,7 +35,7 @@ class OrganizerEventStatsView extends StatelessWidget {
 
   Widget _buildCard(BuildContext context, Event eventStats) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: Themes.defaultAppBar(),
         body: Column(
           children: [
             _buildTitle(context, eventStats.name),
