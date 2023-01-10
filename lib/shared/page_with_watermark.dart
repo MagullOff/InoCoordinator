@@ -24,7 +24,8 @@ class PageWithWatermark extends StatelessWidget {
                   child: Image.asset('images/icon512.png', fit: BoxFit.cover),
                 ),
               ),
-              if (child != null) child!
+              if (child != null)
+                Padding(padding: EdgeInsets.all(10), child: child!)
             ],
           )),
     );

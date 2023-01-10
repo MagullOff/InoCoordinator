@@ -7,14 +7,12 @@ class Themes {
   static Color get secondary => const Color.fromARGB(255, 55, 55, 55);
 
   static TextTheme textTheme() => TextTheme(
-        headline1: TextStyle(
-            fontSize: 32.0, fontWeight: FontWeight.bold, color: Colors.white),
-        labelMedium: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey[700]),
-        headline3: TextStyle(fontSize: 16.0, color: Colors.lightGreen[700]),
-      );
+      headline1: const TextStyle(
+          fontSize: 32.0, fontWeight: FontWeight.bold, color: Colors.white),
+      labelMedium: TextStyle(
+          fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.grey[700]),
+      headline3: TextStyle(fontSize: 16.0, color: Colors.lightGreen[700]),
+      button: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold));
 
   static AppBar defaultAppBar({String title = ''}) => AppBar(
         title: Text(title),
