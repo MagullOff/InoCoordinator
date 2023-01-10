@@ -33,12 +33,12 @@ class LoginView extends StatelessWidget {
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                _loginForm(context),
+                _loginForm(),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     _submitButton(),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     _signUpButton(context),
                   ],
                 )
@@ -48,7 +48,7 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  Widget _loginForm(BuildContext context) {
+  Widget _loginForm() {
     return Form(
       key: _formKey,
       child: Column(
@@ -61,12 +61,12 @@ class LoginView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                  child: Text(
-                    'Enter your player code to log in',
-                    style: Theme.of(context).textTheme.headline2,
-                  ),
+                Text(
+                  'Enter your player code to log in',
+                  style: Themes.textTheme().headline2,
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 _codeField(),
               ],
@@ -122,7 +122,7 @@ class LoginView extends StatelessWidget {
                   }
                 },
                 background: Themes.primary,
-                title: 'Continue',
+                title: 'Submit',
                 primary: Themes.backGround,
               );
       },

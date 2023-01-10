@@ -12,6 +12,8 @@ class Themes {
       labelMedium: TextStyle(
           fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.grey[700]),
       headline3: TextStyle(fontSize: 16.0, color: Colors.lightGreen[700]),
+      headline2: TextStyle(
+          fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.grey[700]),
       button: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold));
 
   static AppBar defaultAppBar({String title = ''}) => AppBar(
