@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/auth/cubit/auth_cubit.dart';
 import 'package:ino_coordinator/auth/signup/signup_view.dart';
-import 'package:ino_coordinator/auth/show_code.dart';
+import 'package:ino_coordinator/auth/signup/show_code.dart';
 
 import 'login/login_view.dart';
 
