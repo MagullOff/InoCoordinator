@@ -17,16 +17,6 @@ Widget redirectHyperlink(BuildContext context, String text, String route) {
       ));
 }
 
-Widget icon() {
-  return Container(
-    margin: const EdgeInsets.fromLTRB(0, 90, 0, 30),
-    width: 120,
-    height: 120,
-    alignment: Alignment.center,
-    child: Image.asset('images/icon512.png'),
-  );
-}
-
 InputDecoration inputDecoration(BuildContext context, String message) {
   return InputDecoration(
       border: OutlineInputBorder(),
@@ -37,16 +27,6 @@ InputDecoration inputDecoration(BuildContext context, String message) {
         message,
         style: Theme.of(context).textTheme.headline3,
       ));
-}
-
-AppBar appBar(BuildContext context) {
-  return AppBar(
-    title: const Text('InoCoordinator'),
-    centerTitle: true,
-    backgroundColor: Theme.of(context).primaryColor,
-    toolbarTextStyle: Theme.of(context).textTheme.bodyText2,
-    titleTextStyle: Theme.of(context).textTheme.headline1,
-  );
 }
 
 void showSnackBar(BuildContext context, String message) {

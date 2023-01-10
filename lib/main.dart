@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 
   ThemeData _appTheme() {
     return ThemeData(
-        primaryColor: Colors.lightGreen[700],
+        primaryColor: Color.fromARGB(255, 104, 159, 56),
         backgroundColor: Colors.white,
         textTheme: TextTheme(
           headline1: TextStyle(
