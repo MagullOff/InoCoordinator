@@ -37,9 +37,9 @@ class SignUpView extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                _submitButton(),
-                const SizedBox(height: 10),
                 _loginButton(context),
+                const SizedBox(height: 10),
+                _submitButton(),
               ],
             ),
             _signUpForm(),
@@ -58,7 +58,7 @@ class SignUpView extends StatelessWidget {
   Widget _loginButton(BuildContext context) {
     return WideButton(
       onClick: () => context.read<AuthCubit>().showLogin(),
-      title: "Log in",
+      title: "Go to log in",
       buttonType: ButtonType.secondary,
     );
   }
@@ -94,7 +94,7 @@ class SignUpView extends StatelessWidget {
                     context.read<SignUpBloc>().add(SignUpSubmitted());
                   }
                 },
-                title: 'Submit',
+                title: 'Continue',
                 buttonType: ButtonType.primary,
               );
       },

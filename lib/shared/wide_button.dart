@@ -18,7 +18,7 @@ class WideButton extends StatelessWidget {
       required ButtonType buttonType}) {
     primary = Themes.backGround;
     background = Themes.primary;
-    if (buttonType == ButtonType.primary) {
+    if (buttonType == ButtonType.secondary) {
       primary = Themes.primary;
       background = Themes.backGround;
     }
