@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/data/model/point.dart';
+import 'package:ino_coordinator/shared/page_with_watermark.dart';
 
 import '../../themes.dart';
 import '../bloc/organizer_bloc.dart';
@@ -35,7 +36,7 @@ class OrganizerEventPointsView extends StatelessWidget {
 
   Widget _buildCard(
       BuildContext context, List<Point> points, String eventName) {
-    return Scaffold(
+    return PageWithWatermark(
         floatingActionButton: Container(
             width: 60,
             height: 60,
@@ -49,7 +50,7 @@ class OrganizerEventPointsView extends StatelessWidget {
               color: Colors.white,
             )),
         appBar: Themes.defaultAppBar(title: eventName),
-        body: SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(children: [_buildList(context, points)]),
         ));
   }

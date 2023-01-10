@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/organizer/bloc/organizer_bloc.dart';
+import 'package:ino_coordinator/shared/page_with_watermark.dart';
 
 import '../../data/model/event.dart';
 
@@ -32,8 +33,8 @@ class OrganizerEventsView extends StatelessWidget {
   }
 
   Widget _buildCard(BuildContext context, List<Event> events, String name) {
-    return Scaffold(
-        body: SingleChildScrollView(
+    return PageWithWatermark(
+        child: SingleChildScrollView(
       child: Column(
           children: [_buildTitle(context, name), _buildList(context, events)]),
     ));

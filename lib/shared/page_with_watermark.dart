@@ -7,12 +7,15 @@ import '../themes.dart';
 class PageWithWatermark extends StatelessWidget {
   final Widget? child;
   final AppBar? appBar;
-  const PageWithWatermark({super.key, this.child, this.appBar});
+  final Widget? floatingActionButton;
+  const PageWithWatermark(
+      {super.key, this.child, this.appBar, this.floatingActionButton});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar,
+      floatingActionButton: floatingActionButton,
       body: Container(
           color: Themes.backGround,
           child: Stack(
@@ -25,7 +28,11 @@ class PageWithWatermark extends StatelessWidget {
                 ),
               ),
               if (child != null)
-                Padding(padding: EdgeInsets.all(10), child: child!)
+                Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.all(10),
+                    child: child!)
             ],
           )),
     );

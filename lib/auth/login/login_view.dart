@@ -33,7 +33,6 @@ class LoginView extends StatelessWidget {
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                _loginForm(),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -41,7 +40,8 @@ class LoginView extends StatelessWidget {
                     const SizedBox(height: 10),
                     _signUpButton(context),
                   ],
-                )
+                ),
+                _loginForm(),
               ],
             ),
           )),

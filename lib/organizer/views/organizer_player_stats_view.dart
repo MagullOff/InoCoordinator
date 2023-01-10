@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ino_coordinator/shared/page_with_watermark.dart';
 
 import '../../data/model/player_stats.dart';
 import '../../themes.dart';
@@ -21,9 +22,9 @@ class OrganizerPlayerStatsView extends StatelessWidget {
   }
 
   Widget _buildCard(BuildContext context, PlayerStats model) {
-    return Scaffold(
+    return PageWithWatermark(
       appBar: Themes.defaultAppBar(),
-      body: SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             _buildTitle(context, model.name),

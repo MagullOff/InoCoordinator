@@ -8,6 +8,7 @@ import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/player/bloc/player_bloc.dart';
 import 'package:ino_coordinator/data/player_repository.dart';
 import 'package:ino_coordinator/data/model/player_stats.dart';
+import 'package:ino_coordinator/shared/page_with_watermark.dart';
 
 class PlayerView extends StatelessWidget {
   const PlayerView({super.key});
@@ -56,7 +57,7 @@ class PlayerView extends StatelessWidget {
   }
 
   Widget _buildCard(BuildContext context, PlayerStats model) {
-    return Scaffold(
+    return PageWithWatermark(
       floatingActionButton: Container(
           width: 60,
           height: 60,
@@ -69,7 +70,7 @@ class PlayerView extends StatelessWidget {
             size: 30,
             color: Colors.white,
           )),
-      body: SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             _buildTitle(context, model.name),

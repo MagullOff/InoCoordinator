@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:ino_coordinator/auth/components.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
 
-import '../themes.dart';
+import '../../themes.dart';
 
 class ShowCode extends StatelessWidget {
   const ShowCode({super.key, required this.code});

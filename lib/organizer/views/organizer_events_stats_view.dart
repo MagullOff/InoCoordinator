@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/data/model/event.dart';
 import 'package:ino_coordinator/organizer/views/organizer_event_points_view.dart';
+import 'package:ino_coordinator/shared/page_with_watermark.dart';
 
 import '../../themes.dart';
 import '../bloc/organizer_bloc.dart';
@@ -34,9 +35,9 @@ class OrganizerEventStatsView extends StatelessWidget {
   }
 
   Widget _buildCard(BuildContext context, Event eventStats) {
-    return Scaffold(
+    return PageWithWatermark(
         appBar: Themes.defaultAppBar(),
-        body: Column(
+        child: Column(
           children: [
             _buildTitle(context, eventStats.name),
             _buildButtons(context, eventStats.id)

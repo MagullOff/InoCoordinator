@@ -32,7 +32,6 @@ class SignUpView extends StatelessWidget {
             }
           },
           child: Stack(alignment: Alignment.bottomCenter, children: [
-            _signUpForm(),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -41,6 +40,7 @@ class SignUpView extends StatelessWidget {
                 _loginButton(context),
               ],
             ),
+            _signUpForm(),
           ])),
     ));
   }
