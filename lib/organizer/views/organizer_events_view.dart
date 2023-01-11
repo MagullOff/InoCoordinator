@@ -8,6 +8,7 @@ import 'package:ino_coordinator/shared/list_view_builder.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
 
 import '../../data/model/event.dart';
+import '../../shared/default_floating_button.dart';
 
 class OrganizerEventsView extends StatelessWidget {
   const OrganizerEventsView({super.key});
@@ -36,10 +37,13 @@ class OrganizerEventsView extends StatelessWidget {
 
   Widget _buildCard(BuildContext context, List<Event> events, String name) {
     return PageWithWatermark(
+        floatingActionButton: DefaultFloatingButton(icon: Icons.add),
         child: SingleChildScrollView(
-      child: Column(
-          children: [_buildTitle(context, name), _buildList(context, events)]),
-    ));
+          child: Column(children: [
+            _buildTitle(context, name),
+            _buildList(context, events)
+          ]),
+        ));
   }
 
   Widget _buildList(BuildContext context, List<Event> list) {

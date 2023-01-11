@@ -8,6 +8,7 @@ import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/player/bloc/player_bloc.dart';
 import 'package:ino_coordinator/data/player_repository.dart';
 import 'package:ino_coordinator/data/model/player_stats.dart';
+import 'package:ino_coordinator/shared/default_floating_button.dart';
 import 'package:ino_coordinator/shared/list_item.dart';
 import 'package:ino_coordinator/shared/list_view_builder.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
@@ -61,18 +62,9 @@ class PlayerView extends StatelessWidget {
 
   Widget _buildCard(BuildContext context, PlayerStats model) {
     return PageWithWatermark(
-      floatingActionButton: Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(255, 104, 159, 56),
-            shape: BoxShape.circle,
-          ),
-          child: Icon(
-            Icons.qr_code_2,
-            size: 30,
-            color: Colors.white,
-          )),
+      floatingActionButton: DefaultFloatingButton(
+        icon: Icons.qr_code_2,
+      ),
       child: SingleChildScrollView(
         child: Column(
           children: [
