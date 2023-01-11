@@ -8,3 +8,9 @@ abstract class PlayerEvent extends Equatable {
 }
 
 class GetPlayerStats extends PlayerEvent {}
+
+class CapturePoint extends PlayerEvent {
+  final String code;
+
+  const CapturePoint(this.code);
+}

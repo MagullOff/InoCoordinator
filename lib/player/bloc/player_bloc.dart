@@ -26,5 +26,14 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
         emit(PlayerError(e.toString()));
       }
     });
+    on<CapturePoint>((event, emit) async {
+      try {
+        await playerRepo.capturePoint(playerCredentials, event.code);
+        var stats = await playerRepo.getPlayerStats(playerCredentials);
+        emit(PlayerLoaded(stats: stats));
+      } on Exception catch (e, _) {
+        emit(PlayerError(e.toString()));
+      }
+    });
   }
 }

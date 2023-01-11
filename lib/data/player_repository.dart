@@ -23,4 +23,19 @@ class PlayerRepository {
 
     return PlayerStats.fromJson(jsonDecode(utf8.decode(response.bodyBytes)));
   }
+
+  Future<void> capturePoint(Credentials credentials, String code) async {
+    var url = Uri.http(Config.BaseUrl, 'capture/$code');
+
+    var response = await http.post(
+      url,
+      headers: <String, String>{
+        'Authorization': '${credentials.id}@${credentials.passcode}',
+      },
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception("Error fetching the data!");
+    }
+  }
 }
