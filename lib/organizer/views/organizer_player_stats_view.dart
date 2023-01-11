@@ -3,8 +3,11 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/percentage_display.dart';
 
 import '../../data/model/player_stats.dart';
+import '../../shared/list_item.dart';
+import '../../shared/list_view_builder.dart';
 import '../../themes.dart';
 import '../bloc/organizer_bloc.dart';
 
@@ -47,73 +50,24 @@ class OrganizerPlayerStatsView extends StatelessWidget {
   Widget _buildCapturePercentage(BuildContext context, int capturePercentage) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Container(
-        width: 200,
-        height: 200,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(
-            width: 10,
-            color: Color.fromARGB(255, 104, 159, 56),
-          ),
-        ),
-        child: Center(
-            child: Text('$capturePercentage%\ncomplete',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
-      ),
+      child: PercentageDisplay(progressPercent: capturePercentage),
     );
   }
 
   Widget _buildList(BuildContext context, List<PointStats> list) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 5),
-      child: ListView.builder(
-        physics: ScrollPhysics(parent: null),
-        shrinkWrap: true,
-        itemCount: list.length,
-        itemBuilder: (context, index) {
-          var textColor = list[index].date == null
-              ? Color.fromARGB(255, 55, 55, 55)
-              : Color.fromARGB(255, 104, 159, 56);
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: list[index].date == null
-                      ? Colors.white
-                      : Color.fromARGB(255, 240, 248, 233),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Color.fromARGB(64, 0, 0, 0),
-                        spreadRadius: 2,
-                        blurRadius: 4)
-                  ],
-                ),
-                child: ListTile(
-                  leading: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        list[index].date == null ? Icons.close : Icons.done,
-                        color: textColor,
-                      ),
-                    ],
-                  ),
-                  subtitle: Text(
-                    'Captured by ${list[index].capturePercentage}% of players',
-                    style: TextStyle(color: textColor),
-                  ),
-                  title: Text(list[index].name,
-                      style: TextStyle(
-                          color: textColor, fontWeight: FontWeight.bold)),
-                  trailing: Text(list[index].date ?? '',
-                      style: TextStyle(color: textColor)),
-                )),
-          );
-        },
-      ),
+    return ListViewBuilder(
+      itemCount: list.length,
+      itemBuilder: (context, index) {
+        return ListItem(
+          theme: list[index].date == null
+              ? ListItemTheme.primary
+              : ListItemTheme.secondary,
+          leading: list[index].date == null ? Icons.close : Icons.done,
+          subtitle: 'Captured by ${list[index].capturePercentage}% of players',
+          title: list[index].name,
+          trailingText: list[index].date ?? '',
+        );
+      },
     );
   }
 }

@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/organizer/bloc/organizer_bloc.dart';
+import 'package:ino_coordinator/shared/list_item.dart';
+import 'package:ino_coordinator/shared/list_view_builder.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
 
 import '../../data/model/player.dart';
@@ -63,54 +65,19 @@ class OrganizerEventPlayersView extends StatelessWidget {
       builder: (context, state) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 5),
-          child: ListView.builder(
-            physics: ScrollPhysics(parent: null),
-            shrinkWrap: true,
+          child: ListViewBuilder(
             itemCount: list.length,
             itemBuilder: (context, index) {
-              var textColor = Color.fromARGB(255, 55, 55, 55);
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Color.fromARGB(64, 0, 0, 0),
-                            spreadRadius: 2,
-                            blurRadius: 4)
-                      ],
-                    ),
-                    child: ListTile(
-                      onTap: () => {
-                        context
-                            .read<OrganizerBloc>()
-                            .add(GetPlayerStats(playerId: list[index].id))
-                      },
-                      leading: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.person,
-                            color: textColor,
-                          ),
-                        ],
-                      ),
-                      subtitle: Text('Access code: ${list[index].code}'),
-                      title: Text(list[index].name,
-                          style: TextStyle(
-                              color: textColor, fontWeight: FontWeight.bold)),
-                      trailing: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.chevron_right,
-                            color: textColor,
-                          ),
-                        ],
-                      ),
-                    )),
+              return ListItem(
+                onTap: () => {
+                  context
+                      .read<OrganizerBloc>()
+                      .add(GetPlayerStats(playerId: list[index].id))
+                },
+                leading: Icons.person,
+                subtitle: 'Access code: ${list[index].code}',
+                title: list[index].name,
+                trailingIcon: Icons.chevron_right,
               );
             },
           ),

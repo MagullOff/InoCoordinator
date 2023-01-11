@@ -13,7 +13,7 @@ import 'model/point.dart';
 
 class OrganizerRepository {
   Future<List<Event>> getOrganizerEvents(Credentials credentials) async {
-    var url = Uri.http(Config.BaseUrl, 'events/me');
+    var url = Uri.http(Config.BaseUrl, 'event/me');
 
     var response = await http.get(
       url,
@@ -32,7 +32,7 @@ class OrganizerRepository {
   }
 
   Future<Event> getEvent(Credentials credentials, String eventId) async {
-    var url = Uri.http(Config.BaseUrl, 'events/$eventId');
+    var url = Uri.http(Config.BaseUrl, 'event/$eventId');
 
     var response = await http.get(
       url,
