@@ -38,22 +38,16 @@ class AuthRepository {
     return jsonDecode(response.body)['id'];
   }
 
-  Future<String> signUp(String username) async {
+  Future<String> signUp(String username, String email) async {
     var url = Uri.http(Config.BaseUrl, 'organizer/add');
     var response = await http.post(url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(
-            <String, dynamic>{'name': username, 'email': "essa@net"}));
+        body: jsonEncode(<String, dynamic>{'name': username, 'email': email}));
     if (response.statusCode != 200) {
       throw Exception("cannot sign up!");
     }
     return jsonDecode(response.body)['access_code'].toString();
-  }
-
-  Future<void> signOut() async {
-    print('attempting signout');
-    await Future.delayed(Duration(seconds: 3));
   }
 }

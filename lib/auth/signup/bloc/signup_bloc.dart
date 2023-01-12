@@ -16,13 +16,19 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc({required this.authRepo, required this.authCubit})
       : super(SignUpState()) {
     on<SignUpUsernameChanged>((event, emit) {
-      emit(SignUpState(username: event.username));
+      emit(SignUpState(username: event.username, email: state.email));
+    });
+    on<SignUpEmailChanged>((event, emit) {
+      emit(SignUpState(username: state.username, email: event.email));
     });
     on<SignUpSubmitted>((event, emit) async {
-      emit(SignUpState(formStatus: FormSubmitting(), username: state.username));
+      emit(SignUpState(
+          formStatus: FormSubmitting(),
+          username: state.username,
+          email: state.email));
 
       try {
-        var code = await authRepo.signUp(state.username);
+        var code = await authRepo.signUp(state.username, state.email);
         emit(SignUpState(formStatus: SubmissionSuccess()));
         authCubit.showNewCode(code);
       } on Exception catch (e, _) {

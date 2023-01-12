@@ -50,7 +50,9 @@ class SignUpView extends StatelessWidget {
   Widget _signUpForm() {
     return SubmissionForm(
       formKey: _formKey,
-      input: _usernameField(),
+      input: Column(
+        children: [_usernameField(), _emailField()],
+      ),
       title: 'Enter your desired username to sign up',
     );
   }
@@ -75,6 +77,24 @@ class SignUpView extends StatelessWidget {
                 .read<SignUpBloc>()
                 .add(SignUpUsernameChanged(username: value)),
             decorationText: "Username",
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _emailField() {
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+          child: TextInputField(
+            validator: (value) =>
+                state.isValidEmail ? null : "Email is not valid",
+            onChanged: (value) => context
+                .read<SignUpBloc>()
+                .add(SignUpEmailChanged(email: value)),
+            decorationText: "Email",
           ),
         );
       },
