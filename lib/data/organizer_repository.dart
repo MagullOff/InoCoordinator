@@ -87,6 +87,28 @@ class OrganizerRepository {
     return result;
   }
 
+  Future<void> addPlayer(
+      Credentials credentials, String playerName, String eventId) async {
+    var url = Uri.http(Config.BaseUrl, 'player/$eventId');
+
+    await http.post(url,
+        headers: <String, String>{
+          'Authorization': '${credentials.id}@${credentials.passcode}',
+        },
+        body: jsonEncode(<String, dynamic>{'name': playerName}));
+  }
+
+  Future<void> addPoint(
+      Credentials credentials, String playerName, String eventId) async {
+    var url = Uri.http(Config.BaseUrl, 'point/$eventId');
+
+    await http.post(url,
+        headers: <String, String>{
+          'Authorization': '${credentials.id}@${credentials.passcode}',
+        },
+        body: jsonEncode(<String, dynamic>{'name': playerName}));
+  }
+
   Future<PlayerStats> getPlayerStats(
       Credentials credentials, String playerId) async {
     var url = Uri.http(Config.BaseUrl, 'stats/player/$playerId');
