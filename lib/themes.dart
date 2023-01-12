@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Themes {
-  static Color get primary => const Color.fromARGB(255, 104, 159, 56);
+  static Color get primary => Color(0xFF689F38);
   static Color get primaryLight => const Color.fromARGB(255, 240, 248, 233);
   static Color get backGround => Colors.white;
   static Color get secondary => const Color.fromARGB(255, 55, 55, 55);
@@ -22,10 +22,15 @@ class Themes {
           color: secondary),
       button: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold));
 
-  static AppBar defaultAppBar({String title = ''}) => AppBar(
-        title: Text(title),
+  static AppBar defaultAppBar({String title = '', List<Widget>? actions}) =>
+      AppBar(
+        title: Text(
+          title,
+          style: textTheme().headline1,
+        ),
         centerTitle: true,
         backgroundColor: Themes.primary,
         titleTextStyle: Themes.textTheme().headline1,
+        actions: actions,
       );
 }

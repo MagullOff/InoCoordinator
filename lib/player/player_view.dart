@@ -13,6 +13,8 @@ import 'package:ino_coordinator/shared/list_item.dart';
 import 'package:ino_coordinator/shared/list_view_builder.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
 import 'package:ino_coordinator/shared/percentage_display.dart';
+import 'package:ino_coordinator/themes.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class PlayerView extends StatelessWidget {
   const PlayerView({super.key});
@@ -49,6 +51,8 @@ class PlayerView extends StatelessWidget {
                   return _buildLoading();
                 } else if (state is PlayerLoaded) {
                   return _buildCard(context, state.stats);
+                } else if (state is PlayerCapture) {
+                  return _buildCaptureView();
                 } else if (state is PlayerError) {
                   return Container();
                 } else {
@@ -63,8 +67,10 @@ class PlayerView extends StatelessWidget {
   Widget _buildCard(BuildContext context, PlayerStats model) {
     return PageWithWatermark(
       floatingActionButton: DefaultFloatingButton(
-        icon: Icons.qr_code_2,
-      ),
+          icon: Icons.qr_code_2,
+          onTap: () {
+            context.read<PlayerBloc>().add(BeginPointCapture());
+          }),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -110,4 +116,64 @@ class PlayerView extends StatelessWidget {
   }
 
   Widget _buildLoading() => Center(child: CircularProgressIndicator());
+
+  Widget _buildCaptureView() {
+    MobileScannerController cameraController = MobileScannerController();
+    return BlocBuilder<PlayerBloc, PlayerState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: Themes.defaultAppBar(
+            title: 'Scan the code',
+            actions: [
+              IconButton(
+                color: Colors.white,
+                icon: ValueListenableBuilder(
+                  valueListenable: cameraController.torchState,
+                  builder: (context, state, child) {
+                    switch (state) {
+                      case TorchState.off:
+                        return const Icon(Icons.flash_off, color: Colors.grey);
+                      case TorchState.on:
+                        return const Icon(Icons.flash_on, color: Colors.yellow);
+                    }
+                  },
+                ),
+                iconSize: 32.0,
+                onPressed: () => cameraController.toggleTorch(),
+              ),
+              IconButton(
+                color: Colors.white,
+                icon: ValueListenableBuilder(
+                  valueListenable: cameraController.cameraFacingState,
+                  builder: (context, state, child) {
+                    switch (state) {
+                      case CameraFacing.front:
+                        return const Icon(Icons.camera_front);
+                      case CameraFacing.back:
+                        return const Icon(Icons.camera_rear);
+                    }
+                  },
+                ),
+                iconSize: 32.0,
+                onPressed: () => cameraController.switchCamera(),
+              ),
+            ],
+          ),
+          body: MobileScanner(
+              allowDuplicates: false,
+              onDetect: (barcode, args) {
+                if (barcode.rawValue == null) {
+                  print('Failed to scan Barcode');
+                  context.read<PlayerBloc>().add(GetPlayerStats());
+                } else {
+                  final String code = barcode.rawValue!;
+                  print('Barcode found! $code');
+                  context.read<PlayerBloc>().add(CapturePoint(code));
+                }
+              }),
+        );
+        ;
+      },
+    );
+  }
 }

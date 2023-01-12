@@ -14,3 +14,5 @@ class CapturePoint extends PlayerEvent {
 
   const CapturePoint(this.code);
 }
+
+class BeginPointCapture extends PlayerEvent {}

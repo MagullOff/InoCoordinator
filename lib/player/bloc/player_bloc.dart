@@ -35,5 +35,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
         emit(PlayerError(e.toString()));
       }
     });
+    on<BeginPointCapture>((event, emit) async {
+      emit(PlayerCapture());
+    });
   }
 }

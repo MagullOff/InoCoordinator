@@ -14,6 +14,8 @@ class PlayerLoaded extends PlayerState {
   PlayerLoaded({required this.stats});
 }
 
+class PlayerCapture extends PlayerState {}
+
 class PlayerError extends PlayerState {
   final String? message;
   const PlayerError(this.message);
