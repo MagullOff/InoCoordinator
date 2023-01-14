@@ -20,7 +20,10 @@ class OrganizerNavigator extends StatelessWidget {
       builder: (context, state) {
         return Navigator(
           pages: state.pages,
-          onPopPage: (route, result) => route.didPop(result),
+          onPopPage: (route, result) {
+            context.read<OrganizerBloc>().add(PopPage());
+            return route.didPop(result);
+          },
         );
       },
     );

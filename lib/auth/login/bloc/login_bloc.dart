@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:ino_coordinator/auth/auth_credentials.dart';
 import 'package:ino_coordinator/auth/cubit/auth_cubit.dart';
 import 'package:ino_coordinator/data/auth_repository.dart';
-import 'package:ino_coordinator/auth/form_submission_status.dart';
+import 'package:ino_coordinator/shared/form_submission_status.dart';
 import 'package:meta/meta.dart';
 
 part 'login_event.dart';

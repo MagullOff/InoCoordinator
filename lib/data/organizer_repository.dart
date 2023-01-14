@@ -55,6 +55,7 @@ class OrganizerRepository {
       url,
       headers: <String, String>{
         'Authorization': '${credentials.id}@${credentials.passcode}',
+        'Content-Type': 'application/json; charset=UTF-8',
       },
     );
 
@@ -94,6 +95,7 @@ class OrganizerRepository {
     await http.post(url,
         headers: <String, String>{
           'Authorization': '${credentials.id}@${credentials.passcode}',
+          'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, dynamic>{'name': playerName}));
   }

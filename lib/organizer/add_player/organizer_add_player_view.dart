@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ino_coordinator/auth/signup/bloc/signup_bloc.dart';
+import 'package:ino_coordinator/data/organizer_repository.dart';
+import 'package:ino_coordinator/organizer/add_player/bloc/add_player_bloc.dart';
 import 'package:ino_coordinator/organizer/bloc/organizer_bloc.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
 import 'package:ino_coordinator/themes.dart';
@@ -11,17 +16,24 @@ import '../../shared/text_input_field.dart';
 import '../../shared/wide_button.dart';
 
 class OrganizerAddPlayerView extends StatelessWidget {
-  OrganizerAddPlayerView({super.key});
+  final String eventId;
+  OrganizerAddPlayerView({super.key, required this.eventId});
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return PageWithWatermark(
-        appBar: Themes.defaultAppBar(),
-        child: Stack(alignment: Alignment.bottomCenter, children: [
-          _submitButton(),
-          _playerForm(),
-        ]));
+    return BlocProvider(
+      create: (context) => AddPlayerBloc(
+          eventId: eventId,
+          organizerBloc: context.read<OrganizerBloc>(),
+          organizerRepository: context.read<OrganizerRepository>()),
+      child: PageWithWatermark(
+          appBar: Themes.defaultAppBar(),
+          child: Stack(alignment: Alignment.bottomCenter, children: [
+            _submitButton(),
+            _playerForm(),
+          ])),
+    );
   }
 
   Widget _playerForm() {
@@ -33,17 +45,19 @@ class OrganizerAddPlayerView extends StatelessWidget {
   }
 
   Widget _usernameField() {
-    return BlocBuilder<OrganizerBloc, OrganizerState>(
+    return BlocBuilder<AddPlayerBloc, AddPlayerState>(
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
           child: TextInputField(
-            inputType: InputType.numeric,
-            validator: (value) => null,
-            onChanged: (value) => {
-              //TODO: logic
-            },
+            validator: (value) =>
+                state.isValidUsername ? null : 'Invalid username',
             decorationText: "Username",
+            onChanged: (value) {
+              context
+                  .read<AddPlayerBloc>()
+                  .add(AddPlayerUsernameChanged(value));
+            },
           ),
         );
       },
@@ -51,12 +65,12 @@ class OrganizerAddPlayerView extends StatelessWidget {
   }
 
   Widget _submitButton() {
-    return BlocBuilder<OrganizerBloc, OrganizerState>(
+    return BlocBuilder<AddPlayerBloc, AddPlayerState>(
       builder: (context, state) {
         return WideButton(
           onClick: () {
             if (_formKey.currentState?.validate() ?? false) {
-              //TODO logic
+              context.read<AddPlayerBloc>().add(AddPlayerSubmitted());
             }
           },
           title: 'Submit',

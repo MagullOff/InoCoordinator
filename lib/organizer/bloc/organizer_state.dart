@@ -17,18 +17,8 @@ class OrganizerState extends Equatable {
 
   OrganizerState.pagePop(OrganizerState state) {
     var newPages = state.pages;
-    newPages.length = newPages.isEmpty ? 0 : newPages.length - 1;
+    newPages.removeLast();
     pages = newPages;
-  }
-
-  OrganizerState.popAndAddPage(OrganizerState state, Widget newPage) {
-    var newPages = state.pages;
-    newPages.length = newPages.isEmpty ? 0 : newPages.length - 1;
-    pages = newPages;
-    pages = [
-      ...state.pages,
-      ...[MaterialPage(child: newPage)]
-    ];
   }
 
   @override

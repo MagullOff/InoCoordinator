@@ -15,8 +15,12 @@ import '../../themes.dart';
 class OrganizerEventPlayersView extends StatelessWidget {
   final List<Player> players;
   final String eventName;
+  final String eventId;
   const OrganizerEventPlayersView(
-      {super.key, required this.players, required this.eventName});
+      {super.key,
+      required this.players,
+      required this.eventName,
+      required this.eventId});
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +30,12 @@ class OrganizerEventPlayersView extends StatelessWidget {
   Widget _buildCard(
       BuildContext context, List<Player> players, String eventName) {
     return PageWithWatermark(
-        floatingActionButton:
-            DefaultFloatingButton(icon: Icons.person_add_rounded),
+        floatingActionButton: DefaultFloatingButton(
+          icon: Icons.person_add_rounded,
+          onTap: () {
+            context.read<OrganizerBloc>().add(GetAddPlayerForm(eventId));
+          },
+        ),
         appBar: Themes.defaultAppBar(
           title: eventName,
         ),
