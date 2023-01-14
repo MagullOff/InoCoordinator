@@ -12,14 +12,14 @@ import '../../themes.dart';
 import '../bloc/organizer_bloc.dart';
 
 class OrganizerPlayerStatsView extends StatelessWidget {
-  const OrganizerPlayerStatsView({super.key});
+  final PlayerStats stats;
+  const OrganizerPlayerStatsView({super.key, required this.stats});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OrganizerBloc, OrganizerState>(
       builder: (context, state) {
-        return _buildCard(
-            context, (state as OrganizerLoadedPlayerStats).playerStats);
+        return _buildCard(context, stats);
       },
     );
   }

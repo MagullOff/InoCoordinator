@@ -1,55 +1,36 @@
 part of 'organizer_bloc.dart';
 
-abstract class OrganizerState extends Equatable {
-  const OrganizerState();
+class OrganizerState extends Equatable {
+  late List<Page<dynamic>> pages;
+  OrganizerState({required this.pages});
+
+  OrganizerState.base() {
+    pages = [const MaterialPage(child: PageWithWatermark())];
+  }
+
+  OrganizerState.addPage(OrganizerState state, Widget newPage) {
+    pages = [
+      ...state.pages,
+      ...[MaterialPage(child: newPage)]
+    ];
+  }
+
+  OrganizerState.pagePop(OrganizerState state) {
+    var newPages = state.pages;
+    newPages.length = newPages.isEmpty ? 0 : newPages.length - 1;
+    pages = newPages;
+  }
+
+  OrganizerState.popAndAddPage(OrganizerState state, Widget newPage) {
+    var newPages = state.pages;
+    newPages.length = newPages.isEmpty ? 0 : newPages.length - 1;
+    pages = newPages;
+    pages = [
+      ...state.pages,
+      ...[MaterialPage(child: newPage)]
+    ];
+  }
 
   @override
-  List<Object> get props => [];
-}
-
-class OrganizerLoading extends OrganizerState {}
-
-class OrganizerLoadedEvents extends OrganizerState {
-  final List<Event> events;
-  OrganizerLoadedEvents(this.events);
-}
-
-class OrganizerLoadedEventStats extends OrganizerLoadedEvents {
-  final Event eventStats;
-  OrganizerLoadedEventStats(
-      {required this.eventStats,
-      required OrganizerLoadedEvents organizerLoadedEvents})
-      : super(organizerLoadedEvents.events);
-}
-
-class OrganizerLoadedEventPlayers extends OrganizerLoadedEventStats {
-  final List<Player> players;
-  OrganizerLoadedEventPlayers(
-      this.players, OrganizerLoadedEventStats organizerLoadedEventStats)
-      : super(
-            eventStats: organizerLoadedEventStats.eventStats,
-            organizerLoadedEvents:
-                OrganizerLoadedEvents(organizerLoadedEventStats.events));
-}
-
-class OrganizerLoadedEventPoints extends OrganizerLoadedEventStats {
-  final List<Point> points;
-  OrganizerLoadedEventPoints(
-      this.points, OrganizerLoadedEventStats organizerLoadedEventStats)
-      : super(
-            eventStats: organizerLoadedEventStats.eventStats,
-            organizerLoadedEvents:
-                OrganizerLoadedEvents(organizerLoadedEventStats.events));
-}
-
-class OrganizerLoadedPlayerStats extends OrganizerLoadedEventPlayers {
-  final PlayerStats playerStats;
-  OrganizerLoadedPlayerStats(
-      this.playerStats, OrganizerLoadedEventPlayers organizerLoadedEventPlayers)
-      : super(organizerLoadedEventPlayers.players, organizerLoadedEventPlayers);
-}
-
-class OrganizerError extends OrganizerState {
-  String? message;
-  OrganizerError(this.message);
+  List<Object> get props => [pages];
 }

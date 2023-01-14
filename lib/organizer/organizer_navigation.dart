@@ -19,23 +19,7 @@ class OrganizerNavigator extends StatelessWidget {
     return BlocBuilder<OrganizerBloc, OrganizerState>(
       builder: (context, state) {
         return Navigator(
-          pages: [
-            if (state is OrganizerLoading || state is OrganizerError)
-              MaterialPage(child: LoadingView()),
-            if (state is OrganizerLoadedEvents) ...[
-              MaterialPage(child: OrganizerEventsView()),
-              if (state is OrganizerLoadedEventStats) ...[
-                MaterialPage(child: OrganizerEventStatsView()),
-                if (state is OrganizerLoadedEventPoints)
-                  MaterialPage(child: OrganizerEventPointsView()),
-                if (state is OrganizerLoadedEventPlayers) ...[
-                  MaterialPage(child: OrganizerEventPlayersView()),
-                  if (state is OrganizerLoadedPlayerStats)
-                    MaterialPage(child: OrganizerPlayerStatsView())
-                ]
-              ]
-            ]
-          ],
+          pages: state.pages,
           onPopPage: (route, result) => route.didPop(result),
         );
       },

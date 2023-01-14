@@ -12,29 +12,14 @@ import '../../themes.dart';
 import '../bloc/organizer_bloc.dart';
 
 class OrganizerEventPointsView extends StatelessWidget {
-  const OrganizerEventPointsView({super.key});
+  final List<Point> points;
+  final String eventName;
+  const OrganizerEventPointsView(
+      {super.key, required this.points, required this.eventName});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<OrganizerBloc, OrganizerState>(
-      listener: (context, state) {
-        if (state is OrganizerError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message!),
-            ),
-          );
-        }
-      },
-      child: BlocBuilder<OrganizerBloc, OrganizerState>(
-        builder: (context, state) {
-          return _buildCard(
-              context,
-              (state as OrganizerLoadedEventPoints).points,
-              state.eventStats.name);
-        },
-      ),
-    );
+    return _buildCard(context, points, eventName);
   }
 
   Widget _buildCard(

@@ -11,28 +11,12 @@ import '../../data/model/event.dart';
 import '../../shared/default_floating_button.dart';
 
 class OrganizerEventsView extends StatelessWidget {
-  const OrganizerEventsView({super.key});
+  final List<Event> events;
+  const OrganizerEventsView({super.key, required this.events});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: BlocListener<OrganizerBloc, OrganizerState>(
-      listener: (context, state) {
-        if (state is OrganizerError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message!),
-            ),
-          );
-        }
-      },
-      child: BlocBuilder<OrganizerBloc, OrganizerState>(
-        builder: (context, state) {
-          return _buildCard(
-              context, (state as OrganizerLoadedEvents).events, 'Piotrek32');
-        },
-      ),
-    ));
+    return SafeArea(child: _buildCard(context, events, 'Piotrek32'));
   }
 
   Widget _buildCard(BuildContext context, List<Event> events, String name) {

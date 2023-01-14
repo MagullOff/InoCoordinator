@@ -13,29 +13,14 @@ import '../../data/model/player.dart';
 import '../../themes.dart';
 
 class OrganizerEventPlayersView extends StatelessWidget {
-  const OrganizerEventPlayersView({super.key});
+  final List<Player> players;
+  final String eventName;
+  const OrganizerEventPlayersView(
+      {super.key, required this.players, required this.eventName});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<OrganizerBloc, OrganizerState>(
-      listener: (context, state) {
-        if (state is OrganizerError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message!),
-            ),
-          );
-        }
-      },
-      child: BlocBuilder<OrganizerBloc, OrganizerState>(
-        builder: (context, state) {
-          return _buildCard(
-              context,
-              (state as OrganizerLoadedEventPlayers).players,
-              state.eventStats.name);
-        },
-      ),
-    );
+    return _buildCard(context, players, eventName);
   }
 
   Widget _buildCard(

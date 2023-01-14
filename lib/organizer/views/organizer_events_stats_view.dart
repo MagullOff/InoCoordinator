@@ -10,28 +10,12 @@ import '../../themes.dart';
 import '../bloc/organizer_bloc.dart';
 
 class OrganizerEventStatsView extends StatelessWidget {
-  const OrganizerEventStatsView({super.key});
+  final Event eventStats;
+  const OrganizerEventStatsView({super.key, required this.eventStats});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: BlocListener<OrganizerBloc, OrganizerState>(
-      listener: (context, state) {
-        if (state is OrganizerError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message!),
-            ),
-          );
-        }
-      },
-      child: BlocBuilder<OrganizerBloc, OrganizerState>(
-        builder: (context, state) {
-          return _buildCard(
-              context, (state as OrganizerLoadedEventStats).eventStats);
-        },
-      ),
-    ));
+    return SafeArea(child: _buildCard(context, eventStats));
   }
 
   Widget _buildCard(BuildContext context, Event eventStats) {
