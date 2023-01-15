@@ -31,8 +31,14 @@ class GetPlayerStats extends OrganizerEvent {
 
 class GetAddPlayerForm extends OrganizerEvent {
   final String eventId;
-
   const GetAddPlayerForm(this.eventId);
 }
+
+class GetAddPointForm extends OrganizerEvent {
+  final String eventId;
+  const GetAddPointForm(this.eventId);
+}
+
+class GetAddEventForm extends OrganizerEvent {}
 
 class PopPage extends OrganizerEvent {}

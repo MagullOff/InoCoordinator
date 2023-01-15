@@ -21,7 +21,12 @@ class OrganizerEventsView extends StatelessWidget {
 
   Widget _buildCard(BuildContext context, List<Event> events, String name) {
     return PageWithWatermark(
-        floatingActionButton: DefaultFloatingButton(icon: Icons.add),
+        floatingActionButton: DefaultFloatingButton(
+          icon: Icons.add,
+          onTap: () {
+            context.read<OrganizerBloc>().add(GetAddEventForm());
+          },
+        ),
         child: SingleChildScrollView(
           child: Column(children: [
             _buildTitle(context, name),

@@ -54,7 +54,7 @@ class OrganizerAddEventView extends StatelessWidget {
             onChanged: (value) {
               context.read<AddEventBloc>().add(AddEventNameChanged(value));
             },
-            decorationText: "Username",
+            decorationText: "event name",
           ),
         );
       },

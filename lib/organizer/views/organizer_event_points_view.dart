@@ -14,8 +14,12 @@ import '../bloc/organizer_bloc.dart';
 class OrganizerEventPointsView extends StatelessWidget {
   final List<Point> points;
   final String eventName;
+  final String eventId;
   const OrganizerEventPointsView(
-      {super.key, required this.points, required this.eventName});
+      {super.key,
+      required this.eventId,
+      required this.points,
+      required this.eventName});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +29,12 @@ class OrganizerEventPointsView extends StatelessWidget {
   Widget _buildCard(
       BuildContext context, List<Point> points, String eventName) {
     return PageWithWatermark(
-        floatingActionButton:
-            DefaultFloatingButton(icon: Icons.add_location_alt_rounded),
+        floatingActionButton: DefaultFloatingButton(
+          icon: Icons.add_location_alt_rounded,
+          onTap: () {
+            context.read<OrganizerBloc>().add(GetAddPointForm(eventId));
+          },
+        ),
         appBar: Themes.defaultAppBar(title: eventName),
         child: SingleChildScrollView(
           child: Column(children: [_buildList(context, points)]),

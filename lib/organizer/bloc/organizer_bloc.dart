@@ -15,6 +15,8 @@ import 'package:ino_coordinator/shared/page_with_watermark.dart';
 import '../../data/model/event.dart';
 import '../../data/model/player.dart';
 import '../../data/model/point.dart';
+import '../add_event/organizer_add_event_view.dart';
+import '../add_point/organizer_add_point_view.dart';
 import '../views/organizer_event_points_view.dart';
 import '../views/organizer_events_view.dart';
 import '../views/organizer_player_stats_view.dart';
@@ -79,11 +81,14 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
       try {
         final eventPoints = await organizerRepository.getPoints(
             organizerCredentials, event.eventId);
+        final eventStats = await organizerRepository.getEvent(
+            organizerCredentials, event.eventId);
         emit(OrganizerState.pagePop(state));
         emit(OrganizerState.addPage(
             state,
             OrganizerEventPointsView(
-              eventName: 'siuras',
+              eventName: eventStats.name,
+              eventId: eventStats.id,
               points: eventPoints,
             )));
       } on Exception catch (e, _) {
@@ -107,6 +112,13 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
     on<GetAddPlayerForm>((event, emit) {
       emit(OrganizerState.addPage(
           state, OrganizerAddPlayerView(eventId: event.eventId)));
+    });
+    on<GetAddPointForm>((event, emit) {
+      emit(OrganizerState.addPage(
+          state, OrganizerAddPointView(eventId: event.eventId)));
+    });
+    on<GetAddEventForm>((event, emit) {
+      emit(OrganizerState.addPage(state, OrganizerAddEventView()));
     });
     on<PopPage>((event, emit) {
       emit(OrganizerState.pagePop(state));
