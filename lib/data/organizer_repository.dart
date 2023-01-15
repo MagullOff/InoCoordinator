@@ -101,14 +101,15 @@ class OrganizerRepository {
   }
 
   Future<void> addPoint(
-      Credentials credentials, String playerName, String eventId) async {
+      Credentials credentials, String pointName, String eventId) async {
     var url = Uri.http(Config.BaseUrl, 'point/$eventId');
 
     await http.post(url,
         headers: <String, String>{
           'Authorization': '${credentials.id}@${credentials.passcode}',
+          'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(<String, dynamic>{'name': playerName}));
+        body: jsonEncode(<String, dynamic>{'name': pointName}));
   }
 
   Future<PlayerStats> getPlayerStats(

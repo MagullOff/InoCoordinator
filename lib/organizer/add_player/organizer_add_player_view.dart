@@ -52,12 +52,12 @@ class OrganizerAddPlayerView extends StatelessWidget {
           child: TextInputField(
             validator: (value) =>
                 state.isValidUsername ? null : 'Invalid username',
-            decorationText: "Username",
             onChanged: (value) {
               context
                   .read<AddPlayerBloc>()
                   .add(AddPlayerUsernameChanged(value));
             },
+            decorationText: "Username",
           ),
         );
       },

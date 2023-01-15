@@ -23,13 +23,14 @@ class AddPlayerBloc extends Bloc<AddPlayerEvent, AddPlayerState> {
       emit(AddPlayerState(
           username: state.username, formStatus: FormSubmitting()));
       try {
-        var code = await organizerRepository.addPlayer(
+        await organizerRepository.addPlayer(
             organizerBloc.organizerCredentials, state.username, eventId);
         emit(AddPlayerState(
             username: state.username, formStatus: SubmissionSuccess()));
         organizerBloc.add(GetEventPlayers(eventId: eventId));
       } on Exception catch (e, _) {
-        emit(AddPlayerState(formStatus: SubmissionFailed(e)));
+        emit(AddPlayerState(
+            username: state.username, formStatus: SubmissionFailed(e)));
       }
     });
   }
