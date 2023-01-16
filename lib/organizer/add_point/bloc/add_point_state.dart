@@ -2,7 +2,7 @@ part of 'add_point_bloc.dart';
 
 class AddPointState extends Equatable {
   final String name;
-  bool get isValidName => name.length > 5 && !name.contains(' ');
+  bool get isValidName => name.length > 5 && name.length < 15;
 
   final FormSubmissionStatus formStatus;
   const AddPointState(

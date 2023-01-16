@@ -2,7 +2,7 @@ part of 'add_player_bloc.dart';
 
 class AddPlayerState extends Equatable {
   final String username;
-  bool get isValidUsername => username.length > 5 && !username.contains(' ');
+  bool get isValidUsername => username.length > 5 && username.length < 15;
 
   final FormSubmissionStatus formStatus;
 

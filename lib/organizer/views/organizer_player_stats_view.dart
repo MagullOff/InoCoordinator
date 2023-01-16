@@ -24,24 +24,15 @@ class OrganizerPlayerStatsView extends StatelessWidget {
 
   Widget _buildCard(BuildContext context, PlayerStats model) {
     return PageWithWatermark(
-      appBar: Themes.defaultAppBar(),
+      appBar: Themes.defaultAppBar(title: model.name),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            _buildTitle(context, model.name),
             _buildCapturePercentage(context, model.capturePercentage),
             _buildList(context, model.pointList)
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildTitle(BuildContext context, String title) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-      child: Text(title,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
     );
   }
 
