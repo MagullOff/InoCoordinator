@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:ino_coordinator/cubit/session_cubit.dart';
-import 'package:ino_coordinator/data/model/player_stats.dart';
+import 'package:ino_coordinator/model/player_stats.dart';
 import 'package:http/http.dart' as http;
-
 import '../config.dart';
 
 class PlayerRepository {

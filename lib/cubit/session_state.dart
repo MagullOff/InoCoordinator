@@ -21,11 +21,11 @@ class Unauthenticated extends SessionState {}
 class AuthenticatedOrganizer extends SessionState {
   final Credentials credentials;
 
-  AuthenticatedOrganizer({required this.credentials});
+  const AuthenticatedOrganizer({required this.credentials});
 }
 
 class AuthenticatedPlayer extends SessionState {
   final Credentials credentials;
 
-  AuthenticatedPlayer({required this.credentials});
+  const AuthenticatedPlayer({required this.credentials});
 }

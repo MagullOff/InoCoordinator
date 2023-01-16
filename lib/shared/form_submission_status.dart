@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 
 abstract class FormSubmissionStatus extends Equatable {
   const FormSubmissionStatus();
@@ -19,5 +18,5 @@ class SubmissionSuccess extends FormSubmissionStatus {}
 class SubmissionFailed extends FormSubmissionStatus {
   final Exception exception;
 
-  SubmissionFailed(this.exception);
+  const SubmissionFailed(this.exception);
 }

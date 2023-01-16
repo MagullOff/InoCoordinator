@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/organizer/bloc/organizer_bloc.dart';
 import 'package:ino_coordinator/shared/list_item.dart';
 import 'package:ino_coordinator/shared/list_view_builder.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
 
-import '../../data/model/event.dart';
+import '../../model/event.dart';
 import '../../shared/default_floating_button.dart';
 
 class OrganizerEventsView extends StatelessWidget {
@@ -39,7 +37,7 @@ class OrganizerEventsView extends StatelessWidget {
     return BlocBuilder<OrganizerBloc, OrganizerState>(
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 5),
           child: ListViewBuilder(
               itemCount: list.length,
               itemBuilder: (context, index) {
@@ -61,10 +59,10 @@ class OrganizerEventsView extends StatelessWidget {
 
   Widget _buildTitle(BuildContext context, String title) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
+      padding: const EdgeInsets.fromLTRB(0, 30, 0, 20),
       child: Center(
         child: Text('Welcome $title!',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
       ),
     );
   }

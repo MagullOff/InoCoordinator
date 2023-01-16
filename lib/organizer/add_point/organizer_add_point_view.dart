@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ino_coordinator/data/organizer_repository.dart';
+import 'package:ino_coordinator/organizer/organizer_repository.dart';
 import 'package:ino_coordinator/organizer/add_point/bloc/add_point_bloc.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
 

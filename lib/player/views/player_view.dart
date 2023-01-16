@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ino_coordinator/auth/components.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/player/bloc/player_bloc.dart';
-import 'package:ino_coordinator/data/player_repository.dart';
-import 'package:ino_coordinator/data/model/player_stats.dart';
+import 'package:ino_coordinator/player/player_repository.dart';
+import 'package:ino_coordinator/model/player_stats.dart';
 import 'package:ino_coordinator/shared/default_floating_button.dart';
 import 'package:ino_coordinator/shared/list_item.dart';
 import 'package:ino_coordinator/shared/list_view_builder.dart';
@@ -85,9 +81,9 @@ class PlayerView extends StatelessWidget {
 
   Widget _buildTitle(BuildContext context, String title) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
       child: Text(title,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
     );
   }
 
@@ -115,7 +111,7 @@ class PlayerView extends StatelessWidget {
     );
   }
 
-  Widget _buildLoading() => Center(child: CircularProgressIndicator());
+  Widget _buildLoading() => const Center(child: CircularProgressIndicator());
 
   Widget _buildCaptureView() {
     MobileScannerController cameraController = MobileScannerController();
@@ -163,16 +159,13 @@ class PlayerView extends StatelessWidget {
               allowDuplicates: false,
               onDetect: (barcode, args) {
                 if (barcode.rawValue == null) {
-                  print('Failed to scan Barcode');
                   context.read<PlayerBloc>().add(GetPlayerStats());
                 } else {
                   final String code = barcode.rawValue!;
-                  print('Barcode found! $code');
                   context.read<PlayerBloc>().add(CapturePoint(code));
                 }
               }),
         );
-        ;
       },
     );
   }

@@ -1,10 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
-import 'package:ino_coordinator/data/player_repository.dart';
-import 'package:ino_coordinator/data/model/player_stats.dart';
-import 'package:intl/intl.dart';
+import 'package:ino_coordinator/player/player_repository.dart';
+import 'package:ino_coordinator/model/player_stats.dart';
 
 part 'player_event.dart';
 part 'player_state.dart';

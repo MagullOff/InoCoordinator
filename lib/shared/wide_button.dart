@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../themes.dart';
 
@@ -27,7 +25,7 @@ class WideButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
               color: Color.fromARGB(64, 0, 0, 0),
@@ -41,8 +39,8 @@ class WideButton extends StatelessWidget {
               foregroundColor: primary,
               minimumSize: const Size.fromHeight(50),
               textStyle: Themes.textTheme().button),
-          child: Text(title),
-          onPressed: onClick),
+          onPressed: onClick,
+          child: Text(title)),
     );
   }
 }

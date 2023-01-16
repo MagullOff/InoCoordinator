@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ino_coordinator/auth/auth_credentials.dart';
-import 'package:ino_coordinator/data/auth_repository.dart';
+import 'package:ino_coordinator/auth/auth_repository.dart';
 
 part 'session_state.dart';
 
 class SessionCubit extends Cubit<SessionState> {
   SessionCubit({required this.authRepo}) : super(UnknownSessionState()) {
-    attemptAutoLogin();
+    showAuth();
   }
   final AuthRepository authRepo;
 
@@ -18,16 +18,6 @@ class SessionCubit extends Cubit<SessionState> {
       (state as AuthenticatedPlayer).credentials;
 
   void showAuth() => emit(Unauthenticated());
-
-  void attemptAutoLogin() async {
-    try {
-      final userId = await authRepo.attemptAutoLogin();
-      emit(AuthenticatedOrganizer(
-          credentials: Credentials(passcode: '', id: userId)));
-    } on Exception {
-      emit(Unauthenticated());
-    }
-  }
 
   void showPlayerSession(AuthCredentials credentials) {
     emit(AuthenticatedPlayer(

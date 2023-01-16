@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/app_navigator.dart';
-import 'package:ino_coordinator/auth/auth_navigator.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
-
-import 'auth/cubit/auth_cubit.dart';
-import 'data/auth_repository.dart';
-import 'auth/login/login_view.dart';
+import 'auth/auth_repository.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +19,7 @@ class MyApp extends StatelessWidget {
         child: BlocProvider(
           create: (context) =>
               SessionCubit(authRepo: context.read<AuthRepository>()),
-          child: AppNavigator(),
+          child: const AppNavigator(),
         ),
       ),
       theme: _appTheme(),
@@ -32,10 +28,10 @@ class MyApp extends StatelessWidget {
 
   ThemeData _appTheme() {
     return ThemeData(
-        primaryColor: Color.fromARGB(255, 104, 159, 56),
+        primaryColor: const Color.fromARGB(255, 104, 159, 56),
         backgroundColor: Colors.white,
         textTheme: TextTheme(
-          headline1: TextStyle(
+          headline1: const TextStyle(
               fontSize: 32.0, fontWeight: FontWeight.bold, color: Colors.white),
           headline2: TextStyle(
               fontSize: 20.0,

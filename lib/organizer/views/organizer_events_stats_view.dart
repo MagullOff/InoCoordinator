@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ino_coordinator/data/model/event.dart';
-import 'package:ino_coordinator/organizer/views/organizer_event_points_view.dart';
+import 'package:ino_coordinator/model/event.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
 
 import '../../themes.dart';
@@ -31,7 +28,7 @@ class OrganizerEventStatsView extends StatelessWidget {
 
   Widget _buildButtons(BuildContext context, String eventId) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 200, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
       child: Center(
           child: Row(
         children: [
@@ -53,7 +50,7 @@ class OrganizerEventStatsView extends StatelessWidget {
                 .read<OrganizerBloc>()
                 .add(GetEventPlayers(eventId: eventId));
           },
-          child: Card(
+          child: const Card(
             child: SizedBox(
               width: 150,
               height: 100,
@@ -76,7 +73,7 @@ class OrganizerEventStatsView extends StatelessWidget {
           onTap: () {
             context.read<OrganizerBloc>().add(GetEventPoints(eventId: eventId));
           },
-          child: Card(
+          child: const Card(
             child: SizedBox(
               width: 150,
               height: 100,
@@ -94,10 +91,10 @@ class OrganizerEventStatsView extends StatelessWidget {
 
   Widget _buildTitle(BuildContext context, String title) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
+      padding: const EdgeInsets.fromLTRB(0, 30, 0, 20),
       child: Center(
         child: Text(title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
       ),
     );
   }

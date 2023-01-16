@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/shared/page_with_watermark.dart';
 import 'package:ino_coordinator/shared/percentage_display.dart';
 
-import '../../data/model/player_stats.dart';
+import '../../model/player_stats.dart';
 import '../../shared/list_item.dart';
 import '../../shared/list_view_builder.dart';
 import '../../themes.dart';
@@ -41,9 +39,9 @@ class OrganizerPlayerStatsView extends StatelessWidget {
 
   Widget _buildTitle(BuildContext context, String title) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
       child: Text(title,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
     );
   }
 

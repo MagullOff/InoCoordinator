@@ -1,15 +1,14 @@
 import 'dart:convert';
 
 import 'package:ino_coordinator/cubit/session_cubit.dart';
-import 'package:ino_coordinator/data/model/player.dart';
-import 'package:ino_coordinator/player/bloc/player_bloc.dart';
+import 'package:ino_coordinator/model/player.dart';
 
 import '../config.dart';
-import 'model/event.dart';
+import '../model/event.dart';
 import 'package:http/http.dart' as http;
 
-import 'model/player_stats.dart';
-import 'model/point.dart';
+import '../model/player_stats.dart';
+import '../model/point.dart';
 
 class OrganizerRepository {
   Future<List<Event>> getOrganizerEvents(Credentials credentials) async {

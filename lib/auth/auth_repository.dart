@@ -5,11 +5,6 @@ import 'package:http/http.dart' as http;
 import '../config.dart';
 
 class AuthRepository {
-  Future<String> attemptAutoLogin() async {
-    await Future.delayed(Duration(seconds: 1));
-    throw Exception("not signed in");
-  }
-
   Future<String> loginPlayer(String passcode) async {
     var url = Uri.http(Config.BaseUrl, 'player/login');
 

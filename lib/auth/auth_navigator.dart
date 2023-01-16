@@ -7,6 +7,8 @@ import 'package:ino_coordinator/auth/signup/show_code_view.dart';
 import 'login/login_view.dart';
 
 class AuthNavigator extends StatelessWidget {
+  const AuthNavigator({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(

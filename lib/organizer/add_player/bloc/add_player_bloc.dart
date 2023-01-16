@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:ino_coordinator/data/organizer_repository.dart';
+import 'package:ino_coordinator/organizer/organizer_repository.dart';
 import 'package:ino_coordinator/organizer/bloc/organizer_bloc.dart';
 import 'package:ino_coordinator/shared/form_submission_status.dart';
 
@@ -15,7 +15,7 @@ class AddPlayerBloc extends Bloc<AddPlayerEvent, AddPlayerState> {
       {required this.organizerRepository,
       required this.organizerBloc,
       required this.eventId})
-      : super(AddPlayerState()) {
+      : super(const AddPlayerState()) {
     on<AddPlayerUsernameChanged>((event, emit) {
       emit(AddPlayerState(username: event.username));
     });

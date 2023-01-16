@@ -11,7 +11,7 @@ class PlayerLoading extends PlayerState {}
 
 class PlayerLoaded extends PlayerState {
   final PlayerStats stats;
-  PlayerLoaded({required this.stats});
+  const PlayerLoaded({required this.stats});
 }
 
 class PlayerCapture extends PlayerState {}
