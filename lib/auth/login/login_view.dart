@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/auth/cubit/auth_cubit.dart';
-import 'package:ino_coordinator/shared/form_submission_status.dart';
+import 'package:ino_coordinator/shared/components/form_submission_status.dart';
 import 'package:ino_coordinator/auth/components.dart';
-import 'package:ino_coordinator/shared/page_with_watermark.dart';
-import 'package:ino_coordinator/shared/submission_form.dart';
-import 'package:ino_coordinator/shared/text_input_field.dart';
-import 'package:ino_coordinator/shared/wide_button.dart';
+import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/components/submission_form.dart';
+import 'package:ino_coordinator/shared/components/text_input_field.dart';
+import 'package:ino_coordinator/shared/components/wide_button.dart';
 
 import '../auth_repository.dart';
-import '../../themes.dart';
 import 'bloc/login_bloc.dart';
 
 class LoginView extends StatelessWidget {
@@ -59,7 +57,7 @@ class LoginView extends StatelessWidget {
   }
 
   Widget _signUpButton(BuildContext context) {
-    return WideButton(
+    return WideButton.fromTheme(
       onClick: () => context.read<AuthCubit>().showSignUp(),
       title: "Go to sign up",
       buttonType: ButtonType.secondary,
@@ -92,7 +90,7 @@ class LoginView extends StatelessWidget {
             ? CircularProgressIndicator(
                 color: Theme.of(context).primaryColor,
               )
-            : WideButton(
+            : WideButton.fromTheme(
                 onClick: () {
                   if (_formKey.currentState?.validate() ?? false) {
                     context.read<LoginBloc>().add(LoginSubmitted());

@@ -15,7 +15,8 @@ class PlayerNavigator extends StatelessWidget {
           pages: [
             if (state is PlayerError)
               const MaterialPage(child: Text('error player')),
-            if (state is PlayerLoading) MaterialPage(child: LoadingView()),
+            if (state is PlayerLoading)
+              const MaterialPage(child: LoadingView()),
             if (state is PlayerLoaded) const MaterialPage(child: PlayerView())
           ],
           onPopPage: (route, result) => route.didPop(result),

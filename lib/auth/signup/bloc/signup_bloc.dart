@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ino_coordinator/auth/auth_repository.dart';
-import 'package:ino_coordinator/shared/form_submission_status.dart';
-import 'package:meta/meta.dart';
+import 'package:ino_coordinator/shared/components/form_submission_status.dart';
 
 import '../../cubit/auth_cubit.dart';
 
@@ -14,7 +13,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final AuthCubit authCubit;
 
   SignUpBloc({required this.authRepo, required this.authCubit})
-      : super(SignUpState()) {
+      : super(const SignUpState()) {
     on<SignUpUsernameChanged>((event, emit) {
       emit(SignUpState(username: event.username, email: state.email));
     });

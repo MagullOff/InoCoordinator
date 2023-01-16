@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ino_coordinator/shared/page_with_watermark.dart';
-import 'package:ino_coordinator/shared/percentage_display.dart';
+import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/components/percentage_display.dart';
 
-import '../../model/player_stats.dart';
-import '../../shared/list_item.dart';
-import '../../shared/list_view_builder.dart';
+import '../../shared/model/player_stats.dart';
+import '../../shared/components/list_item.dart';
+import '../../shared/components/list_view_builder.dart';
 import '../../themes.dart';
 import '../bloc/organizer_bloc.dart';
 
@@ -56,7 +56,7 @@ class OrganizerPlayerStatsView extends StatelessWidget {
     return ListViewBuilder(
       itemCount: list.length,
       itemBuilder: (context, index) {
-        return ListItem(
+        return ListItem.fromTheme(
           theme: list[index].date == null
               ? ListItemTheme.primary
               : ListItemTheme.secondary,

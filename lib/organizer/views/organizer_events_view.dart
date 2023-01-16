@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/organizer/bloc/organizer_bloc.dart';
-import 'package:ino_coordinator/shared/list_item.dart';
-import 'package:ino_coordinator/shared/list_view_builder.dart';
-import 'package:ino_coordinator/shared/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/components/list_item.dart';
+import 'package:ino_coordinator/shared/components/list_view_builder.dart';
+import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
 
-import '../../model/event.dart';
-import '../../shared/default_floating_button.dart';
+import '../../shared/model/event.dart';
+import '../../shared/components/default_floating_button.dart';
 
 class OrganizerEventsView extends StatelessWidget {
   final List<Event> events;
@@ -41,7 +41,7 @@ class OrganizerEventsView extends StatelessWidget {
           child: ListViewBuilder(
               itemCount: list.length,
               itemBuilder: (context, index) {
-                return ListItem(
+                return ListItem.fromTheme(
                   onTap: () => {
                     context
                         .read<OrganizerBloc>()

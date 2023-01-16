@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../themes.dart';
+import '../../themes.dart';
 
 class PercentageDisplay extends StatelessWidget {
   final int progressPercent;
@@ -18,7 +18,8 @@ class PercentageDisplay extends StatelessWidget {
       child: Center(
           child: Text('$progressPercent%\ncomplete',
               textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
+              style:
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
     );
   }
 }

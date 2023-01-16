@@ -8,7 +8,7 @@ class SignUpState extends Equatable {
 
   final FormSubmissionStatus formStatus;
 
-  SignUpState(
+  const SignUpState(
       {this.email = '',
       this.username = '',
       this.formStatus = const InitialFormStatus()});

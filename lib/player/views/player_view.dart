@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/player/bloc/player_bloc.dart';
 import 'package:ino_coordinator/player/player_repository.dart';
-import 'package:ino_coordinator/model/player_stats.dart';
-import 'package:ino_coordinator/shared/default_floating_button.dart';
-import 'package:ino_coordinator/shared/list_item.dart';
-import 'package:ino_coordinator/shared/list_view_builder.dart';
-import 'package:ino_coordinator/shared/page_with_watermark.dart';
-import 'package:ino_coordinator/shared/percentage_display.dart';
+import 'package:ino_coordinator/shared/model/player_stats.dart';
+import 'package:ino_coordinator/shared/components/default_floating_button.dart';
+import 'package:ino_coordinator/shared/components/list_item.dart';
+import 'package:ino_coordinator/shared/components/list_view_builder.dart';
+import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/components/percentage_display.dart';
 import 'package:ino_coordinator/themes.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -98,7 +98,7 @@ class PlayerView extends StatelessWidget {
     return ListViewBuilder(
       itemCount: list.length,
       itemBuilder: (context, index) {
-        return ListItem(
+        return ListItem.fromTheme(
           theme: list[index].date == null
               ? ListItemTheme.primary
               : ListItemTheme.secondary,

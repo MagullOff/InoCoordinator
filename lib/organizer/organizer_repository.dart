@@ -1,18 +1,18 @@
 import 'dart:convert';
 
 import 'package:ino_coordinator/cubit/session_cubit.dart';
-import 'package:ino_coordinator/model/player.dart';
+import 'package:ino_coordinator/shared/model/player.dart';
 
 import '../config.dart';
-import '../model/event.dart';
+import '../shared/model/event.dart';
 import 'package:http/http.dart' as http;
 
-import '../model/player_stats.dart';
-import '../model/point.dart';
+import '../shared/model/player_stats.dart';
+import '../shared/model/point.dart';
 
 class OrganizerRepository {
   Future<List<Event>> getOrganizerEvents(Credentials credentials) async {
-    var url = Uri.http(Config.BaseUrl, 'event/me');
+    var url = Uri.http(Config.baseUrl, 'event/me');
 
     var response = await http.get(
       url,
@@ -31,13 +31,12 @@ class OrganizerRepository {
   }
 
   Future<Event> getEvent(Credentials credentials, String eventId) async {
-    var url = Uri.http(Config.BaseUrl, 'event/$eventId');
+    var url = Uri.http(Config.baseUrl, 'event/$eventId');
 
     var response = await http.get(
       url,
       headers: <String, String>{
-        //TODO: change endpoint
-        //'Authorization': '${credentials.id}@${credentials.passcode}',
+        'Authorization': '${credentials.id}@${credentials.passcode}',
       },
     );
 
@@ -48,7 +47,7 @@ class OrganizerRepository {
   }
 
   Future<List<Point>> getPoints(Credentials credentials, String eventId) async {
-    var url = Uri.http(Config.BaseUrl, 'point/event/$eventId');
+    var url = Uri.http(Config.baseUrl, 'point/event/$eventId');
 
     var response = await http.get(
       url,
@@ -69,7 +68,7 @@ class OrganizerRepository {
 
   Future<List<Player>> getPlayers(
       Credentials credentials, String eventId) async {
-    var url = Uri.http(Config.BaseUrl, 'player/event/$eventId');
+    var url = Uri.http(Config.baseUrl, 'player/event/$eventId');
 
     var response = await http.get(
       url,
@@ -89,7 +88,7 @@ class OrganizerRepository {
 
   Future<void> addPlayer(
       Credentials credentials, String playerName, String eventId) async {
-    var url = Uri.http(Config.BaseUrl, 'player/$eventId');
+    var url = Uri.http(Config.baseUrl, 'player/$eventId');
 
     await http.post(url,
         headers: <String, String>{
@@ -101,7 +100,7 @@ class OrganizerRepository {
 
   Future<void> addPoint(
       Credentials credentials, String pointName, String eventId) async {
-    var url = Uri.http(Config.BaseUrl, 'point/$eventId');
+    var url = Uri.http(Config.baseUrl, 'point/$eventId');
 
     await http.post(url,
         headers: <String, String>{
@@ -112,7 +111,7 @@ class OrganizerRepository {
   }
 
   Future<void> addEvent(Credentials credentials, String eventName) async {
-    var url = Uri.http(Config.BaseUrl, 'event');
+    var url = Uri.http(Config.baseUrl, 'event');
 
     await http.post(url,
         headers: <String, String>{
@@ -124,7 +123,7 @@ class OrganizerRepository {
 
   Future<PlayerStats> getPlayerStats(
       Credentials credentials, String playerId) async {
-    var url = Uri.http(Config.BaseUrl, 'stats/player/$playerId');
+    var url = Uri.http(Config.baseUrl, 'stats/player/$playerId');
 
     var response = await http.get(
       url,

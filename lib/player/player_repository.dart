@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
-import 'package:ino_coordinator/model/player_stats.dart';
+import 'package:ino_coordinator/shared/model/player_stats.dart';
 import 'package:http/http.dart' as http;
 import '../config.dart';
 
 class PlayerRepository {
   Future<PlayerStats> getPlayerStats(Credentials credentials) async {
-    var url = Uri.http(Config.BaseUrl, 'stats/player/me');
+    var url = Uri.http(Config.baseUrl, 'stats/player/me');
 
     var response = await http.get(
       url,
@@ -23,7 +23,7 @@ class PlayerRepository {
   }
 
   Future<void> capturePoint(Credentials credentials, String code) async {
-    var url = Uri.http(Config.BaseUrl, 'capture/$code');
+    var url = Uri.http(Config.baseUrl, 'capture/$code');
 
     var response = await http.post(
       url,

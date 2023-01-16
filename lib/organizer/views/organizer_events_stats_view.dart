@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ino_coordinator/model/event.dart';
-import 'package:ino_coordinator/shared/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/model/event.dart';
+import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
 
 import '../../themes.dart';
 import '../bloc/organizer_bloc.dart';
@@ -31,12 +31,12 @@ class OrganizerEventStatsView extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
       child: Center(
           child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildPlayersButton(context, eventId),
           _buildPointsButton(context, eventId)
         ],
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
       )),
     );
   }

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/organizer/organizer_repository.dart';
 import 'package:ino_coordinator/organizer/bloc/organizer_bloc.dart';
-import 'package:ino_coordinator/shared/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
 import 'package:ino_coordinator/themes.dart';
 
-import '../../shared/submission_form.dart';
-import '../../shared/text_input_field.dart';
-import '../../shared/wide_button.dart';
+import '../../shared/components/submission_form.dart';
+import '../../shared/components/text_input_field.dart';
+import '../../shared/components/wide_button.dart';
 import 'bloc/add_event_bloc.dart';
 
 class OrganizerAddEventView extends StatelessWidget {
@@ -58,7 +58,7 @@ class OrganizerAddEventView extends StatelessWidget {
   Widget _submitButton() {
     return BlocBuilder<AddEventBloc, AddEventState>(
       builder: (context, state) {
-        return WideButton(
+        return WideButton.fromTheme(
           onClick: () {
             if (_formKey.currentState?.validate() ?? false) {
               context.read<AddEventBloc>().add(AddEventSubmitted());

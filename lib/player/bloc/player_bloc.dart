@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/player/player_repository.dart';
-import 'package:ino_coordinator/model/player_stats.dart';
+import 'package:ino_coordinator/shared/model/player_stats.dart';
 
 part 'player_event.dart';
 part 'player_state.dart';

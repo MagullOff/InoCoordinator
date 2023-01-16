@@ -6,7 +6,7 @@ import '../config.dart';
 
 class AuthRepository {
   Future<String> loginPlayer(String passcode) async {
-    var url = Uri.http(Config.BaseUrl, 'player/login');
+    var url = Uri.http(Config.baseUrl, 'player/login');
 
     var response = await http.post(url,
         headers: <String, String>{
@@ -20,7 +20,7 @@ class AuthRepository {
   }
 
   Future<String> loginOrganizer(String passcode) async {
-    var url = Uri.http(Config.BaseUrl, 'organizer/login');
+    var url = Uri.http(Config.baseUrl, 'organizer/login');
 
     var response = await http.post(url,
         headers: <String, String>{
@@ -34,7 +34,7 @@ class AuthRepository {
   }
 
   Future<String> signUp(String username, String email) async {
-    var url = Uri.http(Config.BaseUrl, 'organizer/add');
+    var url = Uri.http(Config.baseUrl, 'organizer/add');
     var response = await http.post(url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',

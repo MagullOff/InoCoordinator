@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ino_coordinator/organizer/organizer_repository.dart';
 import 'package:ino_coordinator/organizer/bloc/organizer_bloc.dart';
-import 'package:ino_coordinator/shared/form_submission_status.dart';
+import 'package:ino_coordinator/shared/components/form_submission_status.dart';
 
 part 'add_player_event.dart';
 part 'add_player_state.dart';

@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:ino_coordinator/auth/components.dart';
-import 'package:ino_coordinator/shared/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
 
 import '../../themes.dart';
 
@@ -17,7 +14,7 @@ class ShowCodeView extends StatelessWidget {
       appBar: Themes.defaultAppBar(),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 100,
           ),
           Text(
@@ -25,7 +22,7 @@ class ShowCodeView extends StatelessWidget {
             textAlign: TextAlign.center,
             style: Themes.textTheme().headline2,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Text(
@@ -33,7 +30,7 @@ class ShowCodeView extends StatelessWidget {
             textAlign: TextAlign.center,
             style: Themes.textTheme().headline4,
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Text(

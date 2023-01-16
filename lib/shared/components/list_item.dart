@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../themes.dart';
+import '../../themes.dart';
 
 enum ListItemTheme { primary, secondary }
 
@@ -11,23 +11,43 @@ class ListItem extends StatelessWidget {
   final String title;
   final String? trailingText;
   final IconData? trailingIcon;
-  late Color textColor;
-  late Color mainColor;
-  ListItem(
+  final Color textColor;
+  final Color mainColor;
+
+  const ListItem(
       {super.key,
       this.onTap,
       this.leading,
-      this.subtitle = '',
+      required this.subtitle,
       required this.title,
-      ListItemTheme theme = ListItemTheme.primary,
       this.trailingText,
-      this.trailingIcon}) {
-    textColor =
-        theme == ListItemTheme.primary ? Themes.secondary : Themes.primary;
-    mainColor = theme == ListItemTheme.primary
-        ? Themes.backGround
-        : Themes.primaryLight;
-  }
+      this.trailingIcon,
+      required this.textColor,
+      required this.mainColor});
+
+  ListItem.fromTheme(
+      {Key? key,
+      void Function()? onTap,
+      IconData? leading,
+      String subtitle = '',
+      required String title,
+      ListItemTheme theme = ListItemTheme.primary,
+      String? trailingText,
+      IconData? trailingIcon})
+      : this(
+            key: key,
+            onTap: onTap,
+            leading: leading,
+            subtitle: subtitle,
+            title: title,
+            trailingIcon: trailingIcon,
+            trailingText: trailingText,
+            mainColor: theme == ListItemTheme.primary
+                ? Themes.backGround
+                : Themes.primaryLight,
+            textColor: theme == ListItemTheme.primary
+                ? Themes.secondary
+                : Themes.primary);
 
   @override
   Widget build(BuildContext context) {

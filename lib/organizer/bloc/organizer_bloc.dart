@@ -7,7 +7,7 @@ import 'package:ino_coordinator/loading_view.dart';
 import 'package:ino_coordinator/organizer/add_player/organizer_add_player_view.dart';
 import 'package:ino_coordinator/organizer/views/organizer_event_players_view.dart';
 import 'package:ino_coordinator/organizer/views/organizer_events_stats_view.dart';
-import 'package:ino_coordinator/shared/page_with_watermark.dart';
+import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
 
 import '../add_event/organizer_add_event_view.dart';
 import '../add_point/organizer_add_point_view.dart';
@@ -34,11 +34,11 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
         emit(
             OrganizerState.addPage(state, OrganizerEventsView(events: events)));
       } on Exception catch (e, _) {
-        emit(OrganizerState.addPage(state, LoadingView()));
+        emit(OrganizerState.addPage(state, const LoadingView()));
       }
     });
     on<GetEventStats>((event, emit) async {
-      emit(OrganizerState.addPage(state, LoadingView()));
+      emit(OrganizerState.addPage(state, const LoadingView()));
       try {
         final eventStats = await organizerRepository.getEvent(
             organizerCredentials, event.eventId);
@@ -47,11 +47,11 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
             state, OrganizerEventStatsView(eventStats: eventStats)));
       } on Exception catch (e, _) {
         emit(OrganizerState.pagePop(state));
-        emit(OrganizerState.addPage(state, LoadingView()));
+        emit(OrganizerState.addPage(state, const LoadingView()));
       }
     });
     on<GetEventPlayers>((event, emit) async {
-      emit(OrganizerState.addPage(state, LoadingView()));
+      emit(OrganizerState.addPage(state, const LoadingView()));
       try {
         final eventPlayers = await organizerRepository.getPlayers(
             organizerCredentials, event.eventId);
@@ -67,11 +67,11 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
             )));
       } on Exception catch (e, _) {
         emit(OrganizerState.pagePop(state));
-        emit(OrganizerState.addPage(state, LoadingView()));
+        emit(OrganizerState.addPage(state, const LoadingView()));
       }
     });
     on<GetEventPoints>((event, emit) async {
-      emit(OrganizerState.addPage(state, LoadingView()));
+      emit(OrganizerState.addPage(state, const LoadingView()));
       try {
         final eventPoints = await organizerRepository.getPoints(
             organizerCredentials, event.eventId);
@@ -87,11 +87,11 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
             )));
       } on Exception catch (e, _) {
         emit(OrganizerState.pagePop(state));
-        emit(OrganizerState.addPage(state, LoadingView()));
+        emit(OrganizerState.addPage(state, const LoadingView()));
       }
     });
     on<GetPlayerStats>((event, emit) async {
-      emit(OrganizerState.addPage(state, LoadingView()));
+      emit(OrganizerState.addPage(state, const LoadingView()));
       try {
         final playerStats = await organizerRepository.getPlayerStats(
             organizerCredentials, event.playerId);
@@ -100,7 +100,7 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
             state, OrganizerPlayerStatsView(stats: playerStats)));
       } on Exception catch (e, _) {
         emit(OrganizerState.pagePop(state));
-        emit(OrganizerState.addPage(state, LoadingView()));
+        emit(OrganizerState.addPage(state, const LoadingView()));
       }
     });
     on<GetAddPlayerForm>((event, emit) {

@@ -1,26 +1,37 @@
 import 'package:flutter/material.dart';
 
-import '../themes.dart';
+import '../../themes.dart';
 
 enum ButtonType { primary, secondary }
 
 class WideButton extends StatelessWidget {
   final void Function()? onClick;
-  late Color background;
-  late Color primary;
+  final Color background;
+  final Color primary;
   final String title;
-  WideButton(
+
+  const WideButton(
       {super.key,
       this.onClick,
-      required this.title,
-      required ButtonType buttonType}) {
-    primary = Themes.backGround;
-    background = Themes.primary;
-    if (buttonType == ButtonType.secondary) {
-      primary = Themes.primary;
-      background = Themes.backGround;
-    }
-  }
+      required this.background,
+      required this.primary,
+      required this.title});
+
+  WideButton.fromTheme(
+      {Key? key,
+      void Function()? onClick,
+      required String title,
+      required ButtonType buttonType})
+      : this(
+            key: key,
+            onClick: onClick,
+            title: title,
+            primary: buttonType == ButtonType.primary
+                ? Themes.backGround
+                : Themes.primary,
+            background: buttonType == ButtonType.secondary
+                ? Themes.backGround
+                : Themes.primary);
 
   @override
   Widget build(BuildContext context) {

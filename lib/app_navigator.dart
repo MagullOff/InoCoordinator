@@ -20,7 +20,7 @@ class AppNavigator extends StatelessWidget {
         return Navigator(
           pages: [
             if (state is UnknownSessionState)
-              MaterialPage(child: LoadingView()),
+              const MaterialPage(child: LoadingView()),
             if (state is Unauthenticated)
               MaterialPage(
                   child: BlocProvider(
