@@ -11,7 +11,7 @@ import 'package:ino_coordinator/shared/text_input_field.dart';
 import '../../shared/wide_button.dart';
 import '../../themes.dart';
 import '../cubit/auth_cubit.dart';
-import '../../data/auth_repository.dart';
+import '../auth_repository.dart';
 import '../login/bloc/login_bloc.dart';
 
 class SignUpView extends StatelessWidget {

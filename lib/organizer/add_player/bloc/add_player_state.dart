@@ -6,7 +6,7 @@ class AddPlayerState extends Equatable {
 
   final FormSubmissionStatus formStatus;
 
-  AddPlayerState(
+  const AddPlayerState(
       {this.username = '', this.formStatus = const InitialFormStatus()});
 
   @override

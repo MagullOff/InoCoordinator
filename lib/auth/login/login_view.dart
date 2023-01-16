@@ -9,7 +9,7 @@ import 'package:ino_coordinator/shared/submission_form.dart';
 import 'package:ino_coordinator/shared/text_input_field.dart';
 import 'package:ino_coordinator/shared/wide_button.dart';
 
-import '../../data/auth_repository.dart';
+import '../auth_repository.dart';
 import '../../themes.dart';
 import 'bloc/login_bloc.dart';
 

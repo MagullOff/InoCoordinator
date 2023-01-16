@@ -5,20 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../../cubit/session_cubit.dart';
 
-@immutable
-abstract class AuthState extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
-
-class LoginAuthState extends AuthState {}
-
-class SignUpAuthState extends AuthState {}
-
-class ShowCodeAuthState extends AuthState {
-  final String code;
-  ShowCodeAuthState({required this.code});
-}
+part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit({required this.sessionCubit}) : super(LoginAuthState());
