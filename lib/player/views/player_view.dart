@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/player/bloc/player_bloc.dart';
 import 'package:ino_coordinator/player/player_repository.dart';
+import 'package:ino_coordinator/shared/components/loading_view.dart';
 import 'package:ino_coordinator/shared/model/player_stats.dart';
 import 'package:ino_coordinator/shared/components/default_floating_button.dart';
 import 'package:ino_coordinator/shared/components/list_item.dart';
@@ -44,15 +45,13 @@ class PlayerView extends StatelessWidget {
             child: BlocBuilder<PlayerBloc, PlayerState>(
               builder: (context, state) {
                 if (state is PlayerLoading) {
-                  return _buildLoading();
+                  return const LoadingView(
+                    isAppBarEnabled: false,
+                  );
                 } else if (state is PlayerLoaded) {
                   return _buildCard(context, state.stats);
-                } else if (state is PlayerCapture) {
-                  return _buildCaptureView();
-                } else if (state is PlayerError) {
-                  return Container();
                 } else {
-                  return Container();
+                  return _buildCaptureView();
                 }
               },
             ),
@@ -111,8 +110,6 @@ class PlayerView extends StatelessWidget {
     );
   }
 
-  Widget _buildLoading() => const Center(child: CircularProgressIndicator());
-
   Widget _buildCaptureView() {
     MobileScannerController cameraController = MobileScannerController();
     return BlocBuilder<PlayerBloc, PlayerState>(
@@ -121,22 +118,6 @@ class PlayerView extends StatelessWidget {
           appBar: Themes.defaultAppBar(
             title: 'Scan the code',
             actions: [
-              IconButton(
-                color: Colors.white,
-                icon: ValueListenableBuilder(
-                  valueListenable: cameraController.torchState,
-                  builder: (context, state, child) {
-                    switch (state) {
-                      case TorchState.off:
-                        return const Icon(Icons.flash_off, color: Colors.grey);
-                      case TorchState.on:
-                        return const Icon(Icons.flash_on, color: Colors.yellow);
-                    }
-                  },
-                ),
-                iconSize: 32.0,
-                onPressed: () => cameraController.toggleTorch(),
-              ),
               IconButton(
                 color: Colors.white,
                 icon: ValueListenableBuilder(
@@ -150,8 +131,15 @@ class PlayerView extends StatelessWidget {
                     }
                   },
                 ),
-                iconSize: 32.0,
+                iconSize: 20.0,
                 onPressed: () => cameraController.switchCamera(),
+              ),
+              IconButton(
+                color: Colors.white,
+                icon: const Icon(Icons.close),
+                iconSize: 20.0,
+                onPressed: () =>
+                    context.read<PlayerBloc>().add(GetPlayerStats()),
               ),
             ],
           ),

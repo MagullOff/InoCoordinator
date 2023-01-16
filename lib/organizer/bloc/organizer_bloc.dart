@@ -3,13 +3,13 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/organizer/organizer_repository.dart';
-import 'package:ino_coordinator/loading_view.dart';
 import 'package:ino_coordinator/organizer/add_player/organizer_add_player_view.dart';
 import 'package:ino_coordinator/organizer/views/organizer_error_view.dart';
 import 'package:ino_coordinator/organizer/views/organizer_event_players_view.dart';
 import 'package:ino_coordinator/organizer/views/organizer_events_stats_view.dart';
 import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
 
+import '../../shared/components/loading_view.dart';
 import '../add_event/organizer_add_event_view.dart';
 import '../add_point/organizer_add_point_view.dart';
 import '../views/organizer_event_points_view.dart';

@@ -46,7 +46,8 @@ class OrganizerAddPointView extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
           child: TextInputField(
-            validator: (value) => state.isValidName ? null : 'Invalid username',
+            validator: (value) =>
+                state.isValidName ? null : 'Invalid point name',
             onChanged: (value) {
               context.read<AddPointBloc>().add(AddPointNameChanged(value));
             },
