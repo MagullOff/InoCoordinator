@@ -14,6 +14,9 @@ class Themes {
       headline3: TextStyle(fontSize: 16.0, color: Colors.lightGreen[700]),
       headline2: TextStyle(
           fontSize: 20.0, fontWeight: FontWeight.bold, color: secondary),
+      headline5: TextStyle(
+          fontSize: 30.0, fontWeight: FontWeight.bold, color: secondary),
+      headline6: TextStyle(fontSize: 17.0, color: secondary),
       headline4: TextStyle(fontSize: 14.0, color: Colors.grey[700]),
       caption: TextStyle(
           fontSize: 40.0,

@@ -7,6 +7,7 @@ import '../config.dart';
 import '../shared/model/event.dart';
 import 'package:http/http.dart' as http;
 
+import '../shared/model/event_stats.dart';
 import '../shared/model/player_stats.dart';
 import '../shared/model/point.dart';
 
@@ -46,8 +47,8 @@ class OrganizerRepository {
     return jsonDecode(utf8.decode(response.bodyBytes))['name'];
   }
 
-  Future<Event> getEvent(Credentials credentials, String eventId) async {
-    var url = Uri.http(Config.baseUrl, 'event/$eventId');
+  Future<EventStats> getEvent(Credentials credentials, String eventId) async {
+    var url = Uri.http(Config.baseUrl, '/stats/event/$eventId');
 
     var response = await http.get(
       url,
@@ -59,7 +60,7 @@ class OrganizerRepository {
     if (response.statusCode != 200) {
       throw Exception("Error fetching the data!");
     }
-    return Event.fromJson(jsonDecode(utf8.decode(response.bodyBytes)));
+    return EventStats.fromJson(jsonDecode(utf8.decode(response.bodyBytes)));
   }
 
   Future<List<Point>> getPoints(Credentials credentials, String eventId) async {
