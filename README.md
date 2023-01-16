@@ -13,6 +13,8 @@ Rejestrować się do aplikacji mogą jedynie Organizatorzy gier. Konta użytkown
 
 Aby zalogować się do aplikacji wprowadzamy jedynie kod dostępu. Aplikacja sama sprawdza czy jesteśmy graczem czy organizatorem i przekierowuje nas do odpowiedniego ekranu.
 
+Przy logowaniu i rejestracji (jak i kilku innych ekranach w innych częściach aplikacji) mamy do czynienia z formami z walidacją pochodzącą od providerów.
+
 ## Autoryzacja
 Autoryzowanie użytkowników odbywa się poprzez prosty model tokena w formacie `id-użytkownika@kod-dostępu`. Token ten przesyłany jest w nagówku autoryzacji podczas zapytań do api.
 
@@ -30,3 +32,13 @@ Po kliknięciu `Show points` przeniesiemy się do widoku listy punktów danego w
 
 ## Kwestia backendu
 Aktualnie backend projektu nie jest zhostowany na żadnym serwerze w internecie. Aplikacja przystosowania jest do testowania na komputerze, na którym backend ten jest przypisany do adresu `localhost:7777`.
+
+## Platformy
+Aplikacja działa na systemie android i IOS
+
+## Lista wymagań opcjonalnych
+- support 2 platform
+- logowanie
+- forma z walidacją
+- używanie aparatu
+- BLoC pattern
