@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/shared/components/form_submission_status.dart';
-import 'package:ino_coordinator/auth/components.dart';
+import 'package:ino_coordinator/shared/functions/show_snackbar.dart';
 import 'package:ino_coordinator/auth/signup/bloc/signup_bloc.dart';
 import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
 import 'package:ino_coordinator/shared/components/submission_form.dart';

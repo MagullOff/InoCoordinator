@@ -6,9 +6,11 @@ import 'package:ino_coordinator/organizer/bloc/organizer_bloc.dart';
 import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
 import 'package:ino_coordinator/themes.dart';
 
+import '../../shared/components/form_submission_status.dart';
 import '../../shared/components/submission_form.dart';
 import '../../shared/components/text_input_field.dart';
 import '../../shared/components/wide_button.dart';
+import '../../shared/functions/show_snackbar.dart';
 
 class OrganizerAddPlayerView extends StatelessWidget {
   final String eventId;
@@ -22,12 +24,20 @@ class OrganizerAddPlayerView extends StatelessWidget {
           eventId: eventId,
           organizerBloc: context.read<OrganizerBloc>(),
           organizerRepository: context.read<OrganizerRepository>()),
-      child: PageWithWatermark(
-          appBar: Themes.defaultAppBar(),
-          child: Stack(alignment: Alignment.bottomCenter, children: [
-            _submitButton(),
-            _playerForm(),
-          ])),
+      child: BlocListener<AddPlayerBloc, AddPlayerState>(
+        listener: (context, state) {
+          final formStatus = state.formStatus;
+          if (formStatus is SubmissionFailed) {
+            showSnackBar(context, formStatus.exception.toString());
+          }
+        },
+        child: PageWithWatermark(
+            appBar: Themes.defaultAppBar(),
+            child: Stack(alignment: Alignment.bottomCenter, children: [
+              _submitButton(),
+              _playerForm(),
+            ])),
+      ),
     );
   }
 
@@ -62,15 +72,19 @@ class OrganizerAddPlayerView extends StatelessWidget {
   Widget _submitButton() {
     return BlocBuilder<AddPlayerBloc, AddPlayerState>(
       builder: (context, state) {
-        return WideButton.fromTheme(
-          onClick: () {
-            if (_formKey.currentState?.validate() ?? false) {
-              context.read<AddPlayerBloc>().add(AddPlayerSubmitted());
-            }
-          },
-          title: 'Submit',
-          buttonType: ButtonType.primary,
-        );
+        return state.formStatus is FormSubmitting
+            ? CircularProgressIndicator(
+                color: Theme.of(context).primaryColor,
+              )
+            : WideButton.fromTheme(
+                onClick: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    context.read<AddPlayerBloc>().add(AddPlayerSubmitted());
+                  }
+                },
+                title: 'Submit',
+                buttonType: ButtonType.primary,
+              );
       },
     );
   }

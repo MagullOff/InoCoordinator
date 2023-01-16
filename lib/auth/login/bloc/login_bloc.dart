@@ -35,7 +35,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           authCubit.launchOrganizerSession(
               AuthCredentials(userId: userId, passcode: state.passCode));
         } on Exception catch (f, _) {
-          emit(LoginState(formStatus: SubmissionFailed(e)));
+          emit(LoginState(
+              passCode: state.passCode, formStatus: SubmissionFailed(e)));
         }
       }
     });

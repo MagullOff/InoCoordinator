@@ -4,6 +4,7 @@ import 'package:ino_coordinator/organizer/organizer_repository.dart';
 import 'package:ino_coordinator/organizer/add_point/bloc/add_point_bloc.dart';
 import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
 
+import '../../shared/components/form_submission_status.dart';
 import '../../shared/components/submission_form.dart';
 import '../../shared/components/text_input_field.dart';
 import '../../shared/components/wide_button.dart';
@@ -57,17 +58,21 @@ class OrganizerAddPointView extends StatelessWidget {
   }
 
   Widget _submitButton() {
-    return BlocBuilder<OrganizerBloc, OrganizerState>(
+    return BlocBuilder<AddPointBloc, AddPointState>(
       builder: (context, state) {
-        return WideButton.fromTheme(
-          onClick: () {
-            if (_formKey.currentState?.validate() ?? false) {
-              context.read<AddPointBloc>().add(AddPointSubmitted());
-            }
-          },
-          title: 'Submit',
-          buttonType: ButtonType.primary,
-        );
+        return state.formStatus is FormSubmitting
+            ? CircularProgressIndicator(
+                color: Theme.of(context).primaryColor,
+              )
+            : WideButton.fromTheme(
+                onClick: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    context.read<AddPointBloc>().add(AddPointSubmitted());
+                  }
+                },
+                title: 'Submit',
+                buttonType: ButtonType.primary,
+              );
       },
     );
   }

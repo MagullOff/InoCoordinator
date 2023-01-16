@@ -31,7 +31,10 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         emit(SignUpState(formStatus: SubmissionSuccess()));
         authCubit.showNewCode(code);
       } on Exception catch (e, _) {
-        emit(SignUpState(formStatus: SubmissionFailed(e)));
+        emit(SignUpState(
+            email: state.email,
+            username: state.username,
+            formStatus: SubmissionFailed(e)));
       }
     });
   }
