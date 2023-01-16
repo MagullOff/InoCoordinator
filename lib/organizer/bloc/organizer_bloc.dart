@@ -5,6 +5,7 @@ import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/organizer/organizer_repository.dart';
 import 'package:ino_coordinator/loading_view.dart';
 import 'package:ino_coordinator/organizer/add_player/organizer_add_player_view.dart';
+import 'package:ino_coordinator/organizer/views/organizer_error_view.dart';
 import 'package:ino_coordinator/organizer/views/organizer_event_players_view.dart';
 import 'package:ino_coordinator/organizer/views/organizer_events_stats_view.dart';
 import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
@@ -53,7 +54,11 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
             state, OrganizerEventStatsView(eventStats: eventStats)));
       } on Exception catch (e, _) {
         emit(OrganizerState.pagePop(state));
-        emit(OrganizerState.addPage(state, const LoadingView()));
+        emit(OrganizerState.addPage(
+            state,
+            OrganizerErrorView(
+              error: e,
+            )));
       }
     });
     on<GetEventPlayers>((event, emit) async {
@@ -73,7 +78,11 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
             )));
       } on Exception catch (e, _) {
         emit(OrganizerState.pagePop(state));
-        emit(OrganizerState.addPage(state, const LoadingView()));
+        emit(OrganizerState.addPage(
+            state,
+            OrganizerErrorView(
+              error: e,
+            )));
       }
     });
     on<GetEventPoints>((event, emit) async {
@@ -93,7 +102,11 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
             )));
       } on Exception catch (e, _) {
         emit(OrganizerState.pagePop(state));
-        emit(OrganizerState.addPage(state, const LoadingView()));
+        emit(OrganizerState.addPage(
+            state,
+            OrganizerErrorView(
+              error: e,
+            )));
       }
     });
     on<GetPlayerStats>((event, emit) async {
@@ -106,7 +119,11 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
             state, OrganizerPlayerStatsView(stats: playerStats)));
       } on Exception catch (e, _) {
         emit(OrganizerState.pagePop(state));
-        emit(OrganizerState.addPage(state, const LoadingView()));
+        emit(OrganizerState.addPage(
+            state,
+            OrganizerErrorView(
+              error: e,
+            )));
       }
     });
     on<GetAddPlayerForm>((event, emit) {
