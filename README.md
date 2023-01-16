@@ -27,3 +27,6 @@ Po zalogowaniu się organizator widzi ekran na którym pokazane są wszystkie wy
 Po kliknięciu `Show players` przeniesiemy się do widoku listy graczy danego wydarzenia. W tym widoku mamy również możliwość przeniesienia się do formularza dodawania nowego gracza dla wydarzenia. Przy każdym z użytkowników widoczny jest ich kod potrzebny do zalogowania się. Po kliknięciu w użytkownika przenosimy się do znanego już widoku postępu użytkownika.
 
 Po kliknięciu `Show points` przeniesiemy się do widoku listy punktów danego wydarzenia. W tym widoku mamy również możliwość przeniesienia się do formularza dodawania nowego punktu dla wydarzenia. Przy każdym z użytkowników widoczny jest ich tekst kodu który należy użyć do utworzenia kodu QR dla tego punktu.
+
+## Kwestia backendu
+Aktualnie backend projektu nie jest zhostowany na żadnym serwerze w internecie. Aplikacja przystosowania jest do testowania na komputerze, na którym backend ten jest przypisany do adresu `localhost:7777`.
