@@ -1,16 +1,29 @@
 # ino_coordinator
 
-A new Flutter project.
+Aplikacja służąca do koordynacji gier terenowych.
 
-## Getting Started
+Zobacz [backend](https://github.com/MagullOff/InoCoordinator-Backend) projektu
 
-This project is a starting point for a Flutter application.
+## Opis projektu
 
-A few resources to get you started if this is your first Flutter project:
+Aplikacja pozwala organizatorom gier terenowych tworzyć wydarzenia do których przypisywani będą użytkownicy. Ci zaś będą mieli możliwość skanowania kodów QR dostępnych na punktach gry. W ten sposób uczestnicy będą mieli informacje na temat swojego postępu w grze, a organizator na temat tego jak radzą sobie wszyscy uczestnicy. Organizator posiada również możliwości tworzenia poszczególnych elementów wydarzenia - punktów oraz graczy.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Logowanie i Rejestracja
+Rejestrować się do aplikacji mogą jedynie Organizatorzy gier. Konta użytkowników są przez nich tworzone i przypisane do konkretnego wydarzenia. Do rejestracji potrzebny jest login oraz email. Kod dostępu dla organizatora generowany jest automatycznie. 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Aby zalogować się do aplikacji wprowadzamy jedynie kod dostępu. Aplikacja sama sprawdza czy jesteśmy graczem czy organizatorem i przekierowuje nas do odpowiedniego ekranu.
+
+## Autoryzacja
+Autoryzowanie użytkowników odbywa się poprzez prosty model tokena w formacie `id-użytkownika@kod-dostępu`. Token ten przesyłany jest w nagówku autoryzacji podczas zapytań do api.
+
+## Flow gracza
+Po zalogowaniu się gracz widzi ekran ze statystykami dotyczącymi swojego działania na wydarzeniu. Na ekranie tym mieści się poziom ukończenia całego wydarzenia oraz lista punktów z informacją czy i o której zostały one złapane. 
+
+Dodatkowo w prawym dolnym rogu znajduje się przycisk którego naciśnięcie przenosi nas do sceny kasowania kodu qr, gdzie po skasowaniu kodu (jeżeli będzie on prawidłowy) zostanie drużynie przyznany punkt.
+
+## Flow organizatora
+Po zalogowaniu się organizator widzi ekran na którym pokazane są wszystkie wydarzenia danego użytkownika. Przycisk w prawym dolnym rogu przenosi nas do formularza tworzenia kolejnego wydarzenia. Kliknięcie któregokolwiek z wydarzeń przenosi nas do widoku danego wydarzenia, gdzie pokazane są przyciski pozwalające przejść do konkretnych informacji na temat tego eventu.
+
+Po kliknięciu `Show players` przeniesiemy się do widoku listy graczy danego wydarzenia. W tym widoku mamy również możliwość przeniesienia się do formularza dodawania nowego gracza dla wydarzenia. Przy każdym z użytkowników widoczny jest ich kod potrzebny do zalogowania się. Po kliknięciu w użytkownika przenosimy się do znanego już widoku postępu użytkownika.
+
+Po kliknięciu `Show points` przeniesiemy się do widoku listy punktów danego wydarzenia. W tym widoku mamy również możliwość przeniesienia się do formularza dodawania nowego punktu dla wydarzenia. Przy każdym z użytkowników widoczny jest ich tekst kodu który należy użyć do utworzenia kodu QR dla tego punktu.
