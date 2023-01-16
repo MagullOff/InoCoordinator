@@ -27,6 +27,8 @@ class AddPlayerBloc extends Bloc<AddPlayerEvent, AddPlayerState> {
             organizerBloc.organizerCredentials, state.username, eventId);
         emit(AddPlayerState(
             username: state.username, formStatus: SubmissionSuccess()));
+        organizerBloc.add(PopPage());
+        organizerBloc.add(PopPage());
         organizerBloc.add(GetEventPlayers(eventId: eventId));
       } on Exception catch (e, _) {
         emit(AddPlayerState(

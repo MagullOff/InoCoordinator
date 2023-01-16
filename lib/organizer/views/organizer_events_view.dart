@@ -10,11 +10,13 @@ import '../../shared/components/default_floating_button.dart';
 
 class OrganizerEventsView extends StatelessWidget {
   final List<Event> events;
-  const OrganizerEventsView({super.key, required this.events});
+  final String organizerName;
+  const OrganizerEventsView(
+      {super.key, required this.events, required this.organizerName});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: _buildCard(context, events, 'Piotrek32'));
+    return SafeArea(child: _buildCard(context, events, organizerName));
   }
 
   Widget _buildCard(BuildContext context, List<Event> events, String name) {

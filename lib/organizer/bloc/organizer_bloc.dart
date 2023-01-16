@@ -31,8 +31,14 @@ class OrganizerBloc extends Bloc<OrganizerEvent, OrganizerState> {
       try {
         final events =
             await organizerRepository.getOrganizerEvents(organizerCredentials);
-        emit(
-            OrganizerState.addPage(state, OrganizerEventsView(events: events)));
+        final organizerName =
+            await organizerRepository.getMyName(organizerCredentials);
+        emit(OrganizerState.addPage(
+            state,
+            OrganizerEventsView(
+              events: events,
+              organizerName: organizerName,
+            )));
       } on Exception catch (e, _) {
         emit(OrganizerState.addPage(state, const LoadingView()));
       }

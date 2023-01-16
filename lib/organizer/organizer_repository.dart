@@ -30,6 +30,22 @@ class OrganizerRepository {
     return result;
   }
 
+  Future<String> getMyName(Credentials credentials) async {
+    var url = Uri.http(Config.baseUrl, 'organizer/me');
+
+    var response = await http.get(
+      url,
+      headers: <String, String>{
+        'Authorization': '${credentials.id}@${credentials.passcode}',
+      },
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception("Error fetching the data!");
+    }
+    return jsonDecode(utf8.decode(response.bodyBytes))['name'];
+  }
+
   Future<Event> getEvent(Credentials credentials, String eventId) async {
     var url = Uri.http(Config.baseUrl, 'event/$eventId');
 

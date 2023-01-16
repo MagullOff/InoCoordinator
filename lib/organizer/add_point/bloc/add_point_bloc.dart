@@ -26,6 +26,8 @@ class AddPointBloc extends Bloc<AddPointEvent, AddPointState> {
         await organizerRepository.addPoint(
             organizerBloc.organizerCredentials, state.name, eventId);
         emit(AddPointState(name: state.name, formStatus: SubmissionSuccess()));
+        organizerBloc.add(PopPage());
+        organizerBloc.add(PopPage());
         organizerBloc.add(GetEventPoints(eventId: eventId));
       } on Exception catch (e, _) {
         emit(AddPointState(name: state.name, formStatus: SubmissionFailed(e)));

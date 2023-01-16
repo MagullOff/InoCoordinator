@@ -24,6 +24,8 @@ class AddEventBloc extends Bloc<AddEventEvent, AddEventState> {
             organizerBloc.organizerCredentials, state.eventName);
         emit(AddEventState(
             eventName: state.eventName, formStatus: SubmissionSuccess()));
+        organizerBloc.add(PopPage());
+        organizerBloc.add(PopPage());
         organizerBloc.add(GetOrganizerEvents());
       } on Exception catch (e, _) {
         emit(AddEventState(
