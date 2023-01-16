@@ -30,7 +30,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
         var stats = await playerRepo.getPlayerStats(playerCredentials);
         emit(PlayerLoaded(stats: stats));
       } on Exception catch (e, _) {
-        emit(PlayerError(e.toString()));
+        emit(const PlayerError('Wrong QR code!'));
       }
     });
     on<BeginPointCapture>((event, emit) async {

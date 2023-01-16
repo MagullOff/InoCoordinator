@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ino_coordinator/cubit/session_cubit.dart';
 import 'package:ino_coordinator/player/bloc/player_bloc.dart';
 import 'package:ino_coordinator/player/player_repository.dart';
+import 'package:ino_coordinator/player/views/qr_view.dart';
 import 'package:ino_coordinator/shared/components/loading_view.dart';
+import 'package:ino_coordinator/shared/functions/show_snackbar.dart';
 import 'package:ino_coordinator/shared/model/player_stats.dart';
 import 'package:ino_coordinator/shared/components/default_floating_button.dart';
 import 'package:ino_coordinator/shared/components/list_item.dart';
@@ -18,10 +20,6 @@ class PlayerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _buildView(context);
-  }
-
-  Widget _buildView(BuildContext context) {
     return SafeArea(
       child: BlocProvider(
           create: (context) {
@@ -51,7 +49,7 @@ class PlayerView extends StatelessWidget {
                 } else if (state is PlayerLoaded) {
                   return _buildCard(context, state.stats);
                 } else {
-                  return _buildCaptureView();
+                  return QrScanView();
                 }
               },
             ),
@@ -105,54 +103,6 @@ class PlayerView extends StatelessWidget {
           subtitle: 'Captured by ${list[index].capturePercentage}% of players',
           title: list[index].name,
           trailingText: list[index].date ?? '',
-        );
-      },
-    );
-  }
-
-  Widget _buildCaptureView() {
-    MobileScannerController cameraController = MobileScannerController();
-    return BlocBuilder<PlayerBloc, PlayerState>(
-      builder: (context, state) {
-        return Scaffold(
-          appBar: Themes.defaultAppBar(
-            title: 'Scan the code',
-            actions: [
-              IconButton(
-                color: Colors.white,
-                icon: ValueListenableBuilder(
-                  valueListenable: cameraController.cameraFacingState,
-                  builder: (context, state, child) {
-                    switch (state) {
-                      case CameraFacing.front:
-                        return const Icon(Icons.camera_front);
-                      case CameraFacing.back:
-                        return const Icon(Icons.camera_rear);
-                    }
-                  },
-                ),
-                iconSize: 20.0,
-                onPressed: () => cameraController.switchCamera(),
-              ),
-              IconButton(
-                color: Colors.white,
-                icon: const Icon(Icons.close),
-                iconSize: 20.0,
-                onPressed: () =>
-                    context.read<PlayerBloc>().add(GetPlayerStats()),
-              ),
-            ],
-          ),
-          body: MobileScanner(
-              allowDuplicates: false,
-              onDetect: (barcode, args) {
-                if (barcode.rawValue == null) {
-                  context.read<PlayerBloc>().add(GetPlayerStats());
-                } else {
-                  final String code = barcode.rawValue!;
-                  context.read<PlayerBloc>().add(CapturePoint(code));
-                }
-              }),
         );
       },
     );
