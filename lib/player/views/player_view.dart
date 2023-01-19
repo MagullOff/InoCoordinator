@@ -5,15 +5,13 @@ import 'package:ino_coordinator/player/bloc/player_bloc.dart';
 import 'package:ino_coordinator/player/player_repository.dart';
 import 'package:ino_coordinator/player/views/qr_view.dart';
 import 'package:ino_coordinator/shared/components/loading_view.dart';
-import 'package:ino_coordinator/shared/functions/show_snackbar.dart';
 import 'package:ino_coordinator/shared/model/player_stats.dart';
 import 'package:ino_coordinator/shared/components/default_floating_button.dart';
 import 'package:ino_coordinator/shared/components/list_item.dart';
 import 'package:ino_coordinator/shared/components/list_view_builder.dart';
 import 'package:ino_coordinator/shared/components/page_with_watermark.dart';
 import 'package:ino_coordinator/shared/components/percentage_display.dart';
-import 'package:ino_coordinator/themes.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class PlayerView extends StatelessWidget {
   const PlayerView({super.key});
@@ -47,7 +45,7 @@ class PlayerView extends StatelessWidget {
                     isAppBarEnabled: false,
                   );
                 } else if (state is PlayerLoaded) {
-                  return _buildCard(context, state.stats);
+                  return _buildView(context, state.stats);
                 } else {
                   return QrScanView();
                 }
@@ -57,12 +55,16 @@ class PlayerView extends StatelessWidget {
     );
   }
 
-  Widget _buildCard(BuildContext context, PlayerStats model) {
+  Widget _buildView(BuildContext context, PlayerStats model) {
     return PageWithWatermark(
       floatingActionButton: DefaultFloatingButton(
           icon: Icons.qr_code_2,
-          onTap: () {
-            context.read<PlayerBloc>().add(BeginPointCapture());
+          onTap: () async {
+            var status = await Permission.camera.status;
+            if (!status.isDenied) {
+              // ignore: use_build_context_synchronously
+              context.read<PlayerBloc>().add(BeginPointCapture());
+            }
           }),
       child: SingleChildScrollView(
         child: Column(

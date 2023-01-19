@@ -1,3 +1,3 @@
 class Config {
-  static String get baseUrl => '10.0.2.2:7777';
+  static String get baseUrl => '192.168.1.41:7777';
 }
