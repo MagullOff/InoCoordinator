@@ -47,10 +47,3 @@ Aktualnie backend projektu nie jest zhostowany na żadnym serwerze w internecie.
 
 ## Platformy
 Aplikacja działa na systemie android i IOS
-
-## Lista wymagań opcjonalnych
-- support 2 platform
-- logowanie
-- forma z walidacją
-- używanie aparatu
-- BLoC pattern
